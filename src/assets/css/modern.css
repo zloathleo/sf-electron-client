@@ -1744,7 +1744,7 @@ code {
     overflow: hidden;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    border: 0!important;
+    border: 0;
     height: 55px;
     font-size: 14px;
     font-weight: 600;

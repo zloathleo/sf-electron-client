@@ -1,0 +1,101 @@
+.page-sidebar{
+    width:120px;
+}
+
+.menu.accordion-menu{
+    width:120px;
+}
+
+.panel .panel-heading .panel-title { 
+   color: #ccc;
+   font-size: 20px;
+} 
+
+.panel-dark .panel-heading .panel-control a {
+    color: #ccc;
+}
+
+.panel .panel-body { 
+    border-top: 1px solid #777;
+    margin: 5px 20px 0px 20px;  
+}  
+
+.page-footer{
+    padding: 5px 10px 5px 20px; 
+    text-align: right;
+}
+
+/** custom UI **/
+.amplifier{  
+    padding: 10px 2px 0px 0px; 
+}
+ 
+.amplifier-content-all{
+    position: relative; 
+    width: 100%;
+    padding: 10px 0px 4px 0px; 
+    background: #333;
+    display: inline-block;  
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;  
+    transition: all .2s ease;
+}
+
+.amplifier-content{
+    display:flex;
+    background: #333;
+    padding: 10px 0px; 
+}
+
+.amplifier-title{
+    border-bottom: 1px solid #E6E9ED;
+    padding: 1px 10px 5px 10px;
+}
+ 
+.amplifier-fire-div{ 
+    display:grid;
+    margin: 0px 0px 0px 20px;
+    text-align: left;
+}
+
+/**火焰图标大小**/
+.amplifier-fire{
+    font-size:32px;
+}
+
+.amplifier-label{
+    padding-left: 4px;
+}
+
+.amplifier-action-buttons{
+    margin: 0px 10px 6px 10px;
+    text-align: right;
+}
+
+/**斜角标志**/
+.amplifier--ribbon-wrapper{
+    position: absolute;
+    overflow: hidden;
+    width: 85px;
+    height: 88px;
+    top: -3px;
+    right: -3px;
+}
+
+/**斜角标志**/
+.amplifier-ribbon{
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    transform: rotate(45deg);
+    padding: 3px 0;
+    left: 35px;
+    top: 8px;
+    width: 70px;
+    line-height: 10px;
+    background-color: #555;
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
