@@ -6,13 +6,23 @@
     width:120px;
 }
 
+.panel{
+    margin-bottom: 10px;  
+}
+
+.panel .panel-heading {
+    padding: 0px;
+    height: auto;
+}
+
 .panel .panel-heading .panel-title { 
    color: #ccc;
+   padding: 15px 0px 0px 20px;
    font-size: 20px;
 } 
 
-.panel-dark .panel-heading .panel-control a {
-    color: #ccc;
+.panel .panel-heading .panel-control {
+    padding: 5px 20px 0px 0px;
 }
 
 .panel .panel-body { 
@@ -27,7 +37,7 @@
 
 /** custom UI **/
 .amplifier{  
-    padding: 10px 2px 0px 0px; 
+    padding: 10px 10px 0px 0px; 
 }
  
 .amplifier-content-all{
@@ -60,7 +70,7 @@
 
 /**火焰图标大小**/
 .amplifier-fire{
-    font-size:32px;
+    font-size:28px;
 }
 
 .amplifier-label{
