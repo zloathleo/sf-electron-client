@@ -1,4 +1,4 @@
-export default function initUI() {
+function overviewInit() {
 
     // Sidebar Menu
     var parent, ink, d, x, y;
@@ -95,4 +95,6 @@ export default function initUI() {
 
     sidebarAndContentHeight();
 
-};
+}
+
+overviewInit(); 

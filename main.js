@@ -54,6 +54,10 @@ function _showMainWindow() {
         width: screenSize.width * 0.7,
         height: screenSize.height * 0.7,
         show: false,
+        //禁用 Node.js
+        webPreferences: {
+            nodeIntegration: false
+        }
     })
 
     mainWindow.loadURL(appLoginPath);

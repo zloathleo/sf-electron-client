@@ -5,8 +5,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    login: './src/scripts/login.js',
-    overview: './src/scripts/overview.js',
+    login: './src/scripts/Login.jsx',
+    overview: './src/scripts/Overview.jsx',
   },
   //ES6 pack成 ES5
   output: {
@@ -15,8 +15,7 @@ module.exports = {
   },
 
   externals: {
-    jquery: "jQuery",
-    react: "React",
+    'react': "React",
     'react-dom': 'ReactDOM'
   },
 
@@ -24,28 +23,26 @@ module.exports = {
 
   module: {
     rules: [ //加载器   
-      { test: /\.js[x]?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
     ]
   },
 
-  //优化webpack打包索引
-  resolve: {
-    alias: {
-      'jquery': path.join(__dirname, '/src/assets/plugins/jquery/jquery-3.2.1.min.js'),
-    }
-  },
-
   plugins: [
-
-    new webpack.ProvidePlugin({
-      $: 'jquery'
-    }),
 
     //复制资源文件
     new CopyWebpackPlugin([
       {
         from: 'src/assets',
         to: 'assets'
+      }
+    ]),
+
+    //复制资源文件
+    new CopyWebpackPlugin([
+      {
+        from: 'src/scripts',
+        to: 'scripts',
+        ignore: '*.jsx',
       }
     ]),
 

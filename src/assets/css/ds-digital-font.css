@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'DSDIGI';
+	src: local('DSDIGI'), url('../font/DSDIGI.woff') format('woff');
+}
+
+.ds-digital-font {
+	font-family: 'DSDIGI' !important;
+}

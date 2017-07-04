@@ -2,7 +2,7 @@
     "name": "COM3",
     "rows": [
         {
-            "title": "Row A",
+            "title": "A",
             "items": [
                 {
                     "name": "No.1",
@@ -103,7 +103,7 @@
             ]
         },
         {
-            "title": "Row B",
+            "title": "B",
             "items": [
                 {
                     "name": "No.3",
@@ -140,7 +140,7 @@
             ]
         },
         {
-            "title": "Row C",
+            "title": "C",
             "items": [
                 {
                     "name": "No.5",
@@ -161,7 +161,7 @@
             ]
         },
         {
-            "title": "Row D",
+            "title": "D",
             "items": [
                 {
                     "name": "No.5",
@@ -182,7 +182,7 @@
             ]
         },
         {
-            "title": "Row E",
+            "title": "E",
             "items": [
                 {
                     "name": "No.5",
@@ -203,7 +203,7 @@
             ]
         },
         {
-            "title": "Row F",
+            "title": "F",
             "items": [
                 {
                     "name": "No.5",
