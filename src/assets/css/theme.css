@@ -184,16 +184,19 @@
 /**菜单**/
 
 /**detail**/
-.detail-all{
+.detail-row{
+    /*padding-right: 0px;
+    padding-left: 0px;*/
+}
+
+.detail-card{
     padding-right: 0px;
     padding-left: 0px;
 }
 
-.detail-panel{
-    max-width: 370px;
-    min-width: 370px;
+.detail-panel{  
     padding: 10px;
-    margin-right: 10px ;
+    margin-right: 10px ; 
 }
 
 .detail-content{

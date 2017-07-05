@@ -17,6 +17,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "electron": "~1.6.2",
     "react": "^15.6.1",
+    "react-bootstrap-switch": "^15.5.0-a",
     "react-contextmenu": "^2.6.3",
     "react-dom": "^15.6.1",
     "react-liquid-gauge": "^1.2.2",
