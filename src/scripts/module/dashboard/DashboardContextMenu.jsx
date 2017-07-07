@@ -1,6 +1,6 @@
 import React from 'react';
 
-class OverviewContextMenu extends React.Component {
+class DashboardContextMenu extends React.Component {
 
     constructor(props) {
         super(props);
@@ -58,14 +58,10 @@ class OverviewContextMenu extends React.Component {
     };
 
     _handleClick(event) {
-
         const { visible } = this.state;
- 
-        const _key = event.target.getAttribute('data-key');
-        const wasOutside = (_key == undefined); 
-        console.log(wasOutside);
-
         if (visible) {
+            const _key = event.target.getAttribute('data-key');
+            const wasOutside = (_key == undefined); 
             if (!wasOutside) {
                 if (this.props.onItemClick) {
                     this.props.onItemClick(_key);
@@ -94,4 +90,4 @@ class OverviewContextMenu extends React.Component {
     };
 }
 
-module.exports = OverviewContextMenu;
+module.exports = DashboardContextMenu;

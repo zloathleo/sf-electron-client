@@ -1,8 +1,19 @@
+.page-content {
+    background: #121212;
+}
+
 .page-sidebar{
     width:120px;
 }
 
+.page-title{
+    border-bottom: 1px solid rgba(120,130,140,0.3);
+}
+
 .page-footer{
+    position: fixed;
+    float: right;
+    right: 10px;
     padding: 5px 10px 5px 20px; 
     text-align: right;
 }
@@ -12,26 +23,28 @@
 }
 
 .panel{
-    margin-bottom: 6px;  
+    margin-bottom: 10px;  
+    padding: 10px;
 }
 
 .panel .panel-heading {
-    padding: 0px;
+    padding: 0px 0px 10px 0px!important; 
     height: auto;
+    border-bottom:1px solid rgba(120,130,140,0.4);
 }
 
 .panel .panel-heading .panel-title { 
    color: #ccc;
-   padding: 10px 0px 0px 20px;
+   padding: 10px 0px 0px 10px;
    font-size: 20px;
 } 
 
-.panel .panel-heading .panel-control {
-    padding: 5px 10px 0px 0px;
+.panel .panel-heading .panel-control { 
+    margin: 10px 5px 0px 0px;
 }
-
+ 
 .panel .panel-body { 
-    padding: 8px 10px 8px 10px!important; 
+    padding: 0px!important; 
 }   
 
 .dropdown-menu li a {
@@ -40,10 +53,14 @@
     font-size: 13px;
 }
 
+.table { 
+    margin-bottom: 0px;
+}
+
 /** custom UI **/
 .row-title{
     float: left;
-    padding: 26px 10px 0px 5px;
+    padding: 20px 0px 0px 5px;
     font-size: 24px;
     width: 30px;
     color: white;
@@ -52,8 +69,8 @@
 .row-delete-icon{
     position: absolute;
     font-size: 14px;
-    right: 5px;
-    top:5px;
+    right: 0px;
+    top: 0px;
 }
  
 .amplifier{  
@@ -183,24 +200,19 @@
 }
 /**菜单**/
 
-/**detail**/
-.detail-row{
-    /*padding-right: 0px;
-    padding-left: 0px;*/
-}
-
+/**detail**/ 
 .detail-card{
     padding-right: 0px;
     padding-left: 0px;
 }
 
 .detail-panel{  
-    padding: 10px;
+    padding: 20px 30px;
     margin-right: 10px ; 
 }
 
 .detail-content{
-    border-top: 1px solid rgba(120,130,140,.13);
+    padding: 0px 15px;
 }
 
  .field-name{
@@ -212,5 +224,19 @@
     font-family: 'DSDIGI' !important;
     color: #f1f1f1;
     font-size: 22px;
+}
+
+/**alarm**/ 
+.alarm-table-head{
+    padding: 0px 0px 5px 0px;  
+    border-bottom:1px solid rgba(120,130,140,0.4);
+}
+
+.alarm-table-head-right{
+    float: right; 
+}
+
+.alarm-table-head-button{
+    margin-left: 5px;
 }
 

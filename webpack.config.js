@@ -6,7 +6,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     login: './src/scripts/Login.jsx',
-    overview: './src/scripts/Overview.jsx',
+
+    index: './src/scripts/Index.jsx',
+
   },
   //ES6 pack成 ES5
   output: {

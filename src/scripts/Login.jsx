@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 class LoginForm extends React.Component {
 
     requestLogin() {
-        window.location.href = 'overview.html';
+        window.location.href = 'index.html';
     }
 
     render() {

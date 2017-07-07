@@ -1,5 +1,7 @@
-var firstName = 'Michael';
-var lastName = 'Jackson';
-var year = 1958;
-
-export { firstName, lastName, year };
+const Const = {
+    KeyDashboard: "Dashboard",
+    KeyAlarm: "Alarm",
+    KeyConfiguration: "Configuration",
+    KeyUser: "User",
+}
+export default Const;

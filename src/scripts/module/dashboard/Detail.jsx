@@ -1,6 +1,6 @@
 import React from 'react';
-import DetailGauge from './module/DetailGauge.jsx';
-import DetailHelp from './module/DetailHelp.jsx';
+import DetailGauge from './DetailGauge.jsx';
+import DetailHelp from './DetailHelp.jsx';
 
 class Detail extends React.Component {
 

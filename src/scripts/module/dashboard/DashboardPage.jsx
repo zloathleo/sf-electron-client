@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OverviewContextMenu from './module/OverviewContextMenu.jsx';
+
+import OverviewContextMenu from './DashboardContextMenu.jsx';
 import Detail from './Detail.jsx';
 
-class AmplifierRow extends React.Component {
+class DashboardPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { uiIndex: 0, overviewData: undefined, detailData: undefined };
+        this.state = { uiIndex: 0 };
+
+        this.overviewData = undefined;
+        this.detailData = undefined;
+
         //init
         this.requestInitDatas = this.requestInitDatas.bind(this);
         this.onRequestInitDatasLoaded = this.onRequestInitDatasLoaded.bind(this);
@@ -30,9 +35,9 @@ class AmplifierRow extends React.Component {
     }
 
     onRequestInitDatasLoaded() {
-        var _overviewData = require('../assets/datas/overview.json');
+        this.overviewData = require("../../../assets/datas/overview.json");
         waitingDialog.hide();
-        this.setState({ uiIndex: 1, overviewData: _overviewData });
+        this.setState({ uiIndex: 1 });
     }
 
     //请求探头详情数据
@@ -41,9 +46,9 @@ class AmplifierRow extends React.Component {
     }
 
     onRequestDetailDataLoaded() {
-        var _detailData = require('../assets/datas/detail.json');
+        this.detailData = require("../../../assets/datas/detail.json");
         waitingDialog.hide();
-        this.setState({ uiIndex: 2, detailData: _detailData });
+        this.setState({ uiIndex: 2 });
     }
 
     //action
@@ -98,7 +103,6 @@ class AmplifierRow extends React.Component {
         }
     }
 
-
     buildRows(row, i) {
         return (<div className="row" key={i}>
             <div className="col-xs-12">
@@ -121,7 +125,6 @@ class AmplifierRow extends React.Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount');
         waitingDialog.show('Loading ...', {
             onShow: this.requestInitDatas,
         });
@@ -133,7 +136,7 @@ class AmplifierRow extends React.Component {
                 <div />
             );
         } else if (this.state.uiIndex == 1) {
-            let _data = this.state.overviewData;
+            let _data = this.overviewData;
             return (
                 <div>
                     {_data.rows.map(this.buildRows)}
@@ -141,10 +144,10 @@ class AmplifierRow extends React.Component {
                 </div>
             );
         } else if (this.state.uiIndex == 2) {
-            let _data = this.state.detailData;
+            let _data = this.detailData;
             return (
                 <div>
-                    <Detail data={_data}/>
+                    <Detail data={_data} />
                 </div>
             );
         }
@@ -153,9 +156,6 @@ class AmplifierRow extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <AmplifierRow />,
-    document.getElementById('main-wrapper')
-);
+module.exports = DashboardPage;
 
 

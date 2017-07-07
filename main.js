@@ -16,8 +16,7 @@ const logoPath = path.join('file://', __dirname, '/public/html/logo.html');
 const appLoginPath = path.join('file://', __dirname, '/public/html/login.html')
 
 let mainWindow;
-let logoWindow;
-
+let logoWindow; 
 let screenSize;
 
 function _showLogoWindow() {
