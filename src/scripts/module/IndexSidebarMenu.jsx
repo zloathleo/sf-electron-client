@@ -28,7 +28,7 @@ class IndexSidebarMenu extends React.Component {
             console.log('error:' + key);
         } else {
             if (key != this.props.moduleName) {
-                EventProxy.trigger('moduleName', key);
+                EventProxy.trigger(Const.Event_ModuleChange, key);
             }
         }
     }

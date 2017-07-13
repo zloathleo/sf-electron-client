@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Const from './Const.jsx'
+import EventProxy from './EventProxy.jsx'
 import DashboardPage from './dashboard/DashboardPage.jsx';
 import AlarmPage from './alarm/AlarmPage.jsx';
 import ConfigPage from './config/ConfigPage.jsx';
@@ -27,8 +28,13 @@ class IndexPageInnerBreadcrumb extends React.Component {
  */
 class IndexPageMain extends React.Component {
 
-    render() {
+    componentDidMount() {
+        // console.log("IndexPageMain componentDidMount");
+        // EventProxy.trigger(Const.Event_DataLoading, 0);
+    }
 
+    render() {
+        EventProxy.trigger(Const.Event_DataLoading, 0);
         switch (this.props.moduleName) {
             case Const.KeyDashboard: {
                 return (
@@ -74,9 +80,6 @@ class IndexPageInner extends React.Component {
 
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
     }
 
     render() {

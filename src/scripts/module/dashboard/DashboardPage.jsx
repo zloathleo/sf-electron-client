@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Const from '../Const.jsx'
+import EventProxy from '../EventProxy.jsx'
 import OverviewContextMenu from './DashboardContextMenu.jsx';
 import Detail from './Detail.jsx';
 
@@ -29,15 +31,19 @@ class DashboardPage extends React.Component {
         this.onRequestDetailDataLoaded = this.onRequestDetailDataLoaded.bind(this);
     }
 
+    componentDidMount() {
+        this.requestInitDatas();
+    }
+
     //初始化数据
     requestInitDatas() {
         setTimeout(this.onRequestInitDatasLoaded, 1000);
     }
 
     onRequestInitDatasLoaded() {
-        this.overviewData = require("../../../assets/datas/overview.json");
-        waitingDialog.hide();
+        this.overviewData = require("../../../assets/datas/overview.json"); 
         this.setState({ uiIndex: 1 });
+        EventProxy.trigger(Const.Event_DataLoading, 1);
     }
 
     //请求探头详情数据
@@ -47,7 +53,8 @@ class DashboardPage extends React.Component {
 
     onRequestDetailDataLoaded() {
         this.detailData = require("../../../assets/datas/detail.json");
-        waitingDialog.hide();
+        // waitingDialog.hide();
+        EventProxy.trigger(Const.Event_DataLoading, 1);
         this.setState({ uiIndex: 2 });
     }
 
@@ -55,11 +62,16 @@ class DashboardPage extends React.Component {
     actionContextMenuItemClick(_key) {
         console.log('actionContextMenuItemClick:' + _key);
         if ('detail' == _key) {
-            waitingDialog.show('Loading ...', {
-                onShow: this.actionRequestDetail,
-            });
+            EventProxy.trigger(Const.Event_DataLoading, 0);
+            this.actionRequestDetail();
+
+            // waitingDialog.show('Loading ...', {
+            //     onShow: this.actionRequestDetail,
+            // });
         }
     }
+
+
 
     actionAddItem() {
 
@@ -124,11 +136,7 @@ class DashboardPage extends React.Component {
         </div >);
     }
 
-    componentDidMount() {
-        waitingDialog.show('Loading ...', {
-            onShow: this.requestInitDatas,
-        });
-    }
+
 
     render() {
         if (this.state.uiIndex == 0) {

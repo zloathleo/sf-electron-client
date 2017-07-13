@@ -7,10 +7,33 @@ class Detail extends React.Component {
     componentDidMount() {
     }
 
+    actionConfigClick() {
+
+    }
+
     render() {
         const data = this.props.data;
         return (
             <div>
+
+                <div className="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 className="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div className="modal-body">
+                                ...
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="row">
                     <div className="col-xs-12 detail-row">
                         <div className="col-xs-6 detail-card">
@@ -20,7 +43,7 @@ class Detail extends React.Component {
                                     <h4 className="panel-title">{data.name}-CH1</h4>
                                     <span className="badge">No.{data.addr}</span>
                                     <div className="panel-control">
-                                        <a href="javascript:void(0);" title=""><i className="fa fa-cog"></i></a>
+                                        <a href="javascript:void(0);" title="" data-toggle="modal" data-target="#configModal" ><i className="fa fa-cog"></i></a>
                                     </div>
                                 </div>
                                 <div className="panel-body">

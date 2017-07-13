@@ -1,6 +1,28 @@
 import React from 'react';
 
+import Const from '../Const.jsx'
+import EventProxy from '../EventProxy.jsx'
+
 class UserPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.requestInitDatas = this.requestInitDatas.bind(this);
+    }
+
+    componentDidMount() {
+        this.requestInitDatas();
+    }
+
+    //初始化数据
+    requestInitDatas() {
+        setTimeout(this.onRequestInitDatasLoaded, 1000);
+    }
+
+    onRequestInitDatasLoaded() {
+        EventProxy.trigger(Const.Event_DataLoading, 1);
+    }
+
     render() {
         return (
             <div className="panel panel-dark">
@@ -14,13 +36,13 @@ class UserPage extends React.Component {
                             </button>
                             <ul className="dropdown-menu">
                                 <li><a href="#">Manager</a></li>
-                                <li><a href="#">Guest</a></li> 
+                                <li><a href="#">Guest</a></li>
                             </ul>
                         </div>
 
                         <button type="button" className="btn btn-info alarm-table-head-button">Search</button>
 
-                        <div className="alarm-table-head-right"> 
+                        <div className="alarm-table-head-right">
                             <button type="button" className="btn btn-info alarm-table-head-button">Create User</button>
                         </div>
                     </div>
@@ -33,39 +55,28 @@ class UserPage extends React.Component {
                             <table className="table table-striped" style={{ width: '100%', cellspacing: 0 }} role="grid" >
                                 <thead>
                                     <tr role="row">
-                                        <th style={{ width: '100px' }} >Timestamp</th>
-                                        <th style={{ width: '100px' }}>AMP ID</th>
-                                        <th style={{ width: '100px' }} >Scanner ID</th>
-                                        <th style={{ width: '100px' }} >DC</th>
-                                        <th style={{ width: '100px' }}>AC</th>
-                                        <th style={{ width: '100px' }}>FREQ</th>
-
-                                        <th style={{ width: '100px' }}>Type</th>
-                                        <th style={{ width: '100px' }}>Satus</th>
-                                        <th style={{ width: '100px' }}>TEMP</th>
-                                        <th style={{ width: '100px' }}>Fault</th>
-                                        <th style={{ width: '100px' }}>AC Gain</th>
-
-                                        <th style={{ width: '100px' }}>Fault</th>
-                                        <th style={{ width: '100px' }}>AC OnTH_H</th>
+                                        <th style={{ width: '100px' }} >Index</th>
+                                        <th style={{ width: '100px' }}>User Name</th>
+                                        <th style={{ width: '100px' }} >Type</th>
+                                        <th style={{ width: '100px' }} >Create Time</th>
+                                        <th style={{ width: '100px' }}>Enable</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr role="row" >
-                                        <td>17-07-01 10:00:00</td>
                                         <td>1</td>
-                                        <td>CH1</td>
-                                        <td>411</td>
-                                        <td>1999</td>
-                                        <td>99</td>
+                                        <td>manager</td>
+                                        <td>manager</td>
+                                        <td>2017-07-01 12:00:00</td>
+                                        <td>Yes</td>
+                                    </tr>
 
-                                        <td>IR</td>
-                                        <td>ON</td>
-                                        <td>35</td>
-                                        <td>0</td>
-                                        <td>1</td>
-                                        <td>99</td>
-                                        <td>1999</td>
+                                    <tr role="row" >
+                                        <td>2</td>
+                                        <td>guest</td>
+                                        <td>guest</td>
+                                        <td>2017-07-01 12:00:00</td>
+                                        <td>Yes</td>
                                     </tr>
 
                                 </tbody>

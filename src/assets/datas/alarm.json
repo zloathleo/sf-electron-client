@@ -1,0 +1,23 @@
+{
+    "rows": [
+        {
+            "title": "A",
+            "items": [
+                {
+                    "timestamp": "No.1",
+                    "amp_id": 1,
+                    "scanner_id": 1,
+                    "dc": 1,
+                    "ac": 1,
+                    "freq": 1,
+                    "type": 1,
+                    "status": 1,
+                    "temp": 1,
+                    "fault": 1,
+                    "ac_gain": 1,
+                    "ac_onth_h": 1
+                }
+            ]
+        }
+    ]
+}

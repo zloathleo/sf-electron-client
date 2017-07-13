@@ -20,6 +20,7 @@
 
 .menu.accordion-menu{
     width:120px;
+    background: #121212;
 }
 
 .panel{
@@ -215,8 +216,14 @@
     padding: 0px 15px;
 }
 
- .field-name{
+.weather-info {
+    overflow: visible;
+}
+
+.field-name{
     display: inline-block;
+    font-family: 'DSDIGI' !important;
+    font-size: 18px;
     margin-top: 5px;
  }
 
@@ -224,6 +231,11 @@
     font-family: 'DSDIGI' !important;
     color: #f1f1f1;
     font-size: 22px;
+}
+
+.dsdigi-font{ 
+    font-family: 'DSDIGI' !important;
+    font-size: 18px;
 }
 
 /**alarm**/ 
@@ -238,5 +250,10 @@
 
 .alarm-table-head-button{
     margin-left: 5px;
+}
+
+/**config**/ 
+.pull-right input{ 
+    font-size: 18px;
 }
 

@@ -13,15 +13,22 @@ class IndexBody extends React.Component {
     constructor(props) {
         super(props);
         this.state = { moduleName: Const.KeyDashboard };
+
+        EventProxy.on(Const.Event_ModuleChange, (key) => {
+            this.setState({ moduleName: key });
+        });
+
+        EventProxy.on(Const.Event_DataLoading, (_state) => {
+            if (_state == 0) {
+                waitingDialog.show('Loading ...');
+            } else {
+                waitingDialog.hide();
+            }
+        });
     }
 
-    componentDidMount() {
-        EventProxy.on('moduleName', (key) => {
-            console.log('EventProxy.on:' + this.state);
+    componentDidMount() { 
 
-            this.setState({ moduleName: key });
-            console.log('EventProxy.on key:' + key);
-        });
     }
 
     render() {

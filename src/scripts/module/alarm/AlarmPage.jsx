@@ -1,6 +1,32 @@
 import React from 'react';
 
+import Const from '../Const.jsx'
+import EventProxy from '../EventProxy.jsx'
+
 class AlarmPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.requestInitDatas = this.requestInitDatas.bind(this);
+
+        //ui
+        this.buttonSearch = undefined;
+    }
+
+    componentDidMount() {
+        this.requestInitDatas();
+        this.buttonSearch.button("loading");
+    }
+
+    //初始化数据
+    requestInitDatas() {
+        setTimeout(this.onRequestInitDatasLoaded, 1000);
+    }
+
+    onRequestInitDatasLoaded() {
+        EventProxy.trigger(Const.Event_DataLoading, 1);
+    }
+
     render() {
         return (
 
@@ -21,7 +47,7 @@ class AlarmPage extends React.Component {
                             </ul>
                         </div>
 
-                        <button type="button" className="btn btn-info alarm-table-head-button">Search</button>
+                        <button type="button" ref={(ref) => this.buttonSearch = ref} className="btn btn-info alarm-table-head-button">Search</button>
 
                         <div className="alarm-table-head-right">
                             <button type="button" className="btn btn-info alarm-table-head-button">Save To File</button>
@@ -49,8 +75,7 @@ class AlarmPage extends React.Component {
                                         <th style={{ width: '100px' }}>TEMP</th>
                                         <th style={{ width: '100px' }}>Fault</th>
                                         <th style={{ width: '100px' }}>AC Gain</th>
-
-                                        <th style={{ width: '100px' }}>Fault</th>
+ 
                                         <th style={{ width: '100px' }}>AC OnTH_H</th>
                                     </tr>
                                 </thead>
