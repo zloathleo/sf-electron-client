@@ -41,7 +41,7 @@ class DashboardPage extends React.Component {
     }
 
     onRequestInitDatasLoaded() {
-        this.overviewData = require("../../../assets/datas/overview.json"); 
+        this.overviewData = require("../../../assets/datas/overview.json");
         this.setState({ uiIndex: 1 });
         EventProxy.trigger(Const.Event_DataLoading, 1);
     }
@@ -148,7 +148,7 @@ class DashboardPage extends React.Component {
             return (
                 <div>
                     {_data.rows.map(this.buildRows)}
-                    <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
+                    <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} /> 
                 </div>
             );
         } else if (this.state.uiIndex == 2) {

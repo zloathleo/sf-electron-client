@@ -220,6 +220,10 @@
     overflow: visible;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+} 
+
 .field-name{
     display: inline-block;
     font-family: 'DSDIGI' !important;
