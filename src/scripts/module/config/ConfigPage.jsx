@@ -52,17 +52,17 @@ class ConfigPage extends React.Component {
                         </div>
                         <div className="panel-body">
                             <ul className="list-unstyled weather-info">
-                                <li><span className="field-name dsdigi-font">I/O Port</span><span className="pull-right">
+                                <li><span className="field-name">I/O Port</span><span className="pull-right">
 
                                     <div className="btn-group">
-                                        <button type="button" className="btn btn-success dsdigi-font">I/O Port</button>
-                                        <button type="button" className="btn btn-success dropdown-toggle dsdigi-font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" className="btn btn-success">I/O Port</button>
+                                        <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span className="caret"></span>
                                             <span className="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul className="dropdown-menu">
-                                            <li><a href="#" className="dsdigi-font">COM3</a></li>
-                                            <li><a href="#" className="dsdigi-font">COM4</a></li>
+                                            <li><a href="#" >COM3</a></li>
+                                            <li><a href="#" >COM4</a></li>
                                         </ul>
                                     </div>
 

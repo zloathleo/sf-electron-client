@@ -225,21 +225,19 @@
 } 
 
 .field-name{
-    display: inline-block;
-    font-family: 'DSDIGI' !important;
-    font-size: 18px;
+    display: inline-block; 
+    font-size: 15px;
     margin-top: 5px;
  }
 
-.pull-right{
-    font-family: 'DSDIGI' !important;
+.pull-right{ 
     color: #f1f1f1;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .dsdigi-font{ 
     font-family: 'DSDIGI' !important;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 /**alarm**/ 

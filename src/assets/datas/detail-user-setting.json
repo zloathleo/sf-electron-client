@@ -1,0 +1,76 @@
+{
+    "name": "A1",
+    "addr": 1,
+    "ch1": {
+        "name": "ch1",
+        "burner_type": 0,
+        "channel_en": 0,
+        "file": 0,
+        "filea": {
+            "ac_gain": 1,
+            "fc": 99,
+            "ac_on_th": 1999,
+            "ac_on_tl": 600,
+            "max": 1600,
+            "min": 300,
+            "dc_gain": 1,
+            "dc_on_th": 1999,
+            "dc_on_tl": 0,
+            "freq_on_th": 126,
+            "freq_on_tl": 0,
+            "otd": 1,
+            "ffrt": 3
+        },
+        "fileb": {
+            "ac_gain": 1,
+            "fc": 99,
+            "ac_on_th": 1999,
+            "ac_on_tl": 600,
+            "max": 1600,
+            "min": 300,
+            "dc_gain": 1,
+            "dc_on_th": 1999,
+            "dc_on_tl": 0,
+            "freq_on_th": 126,
+            "freq_on_tl": 0,
+            "otd": 1,
+            "ffrt": 5
+        }
+    },
+    "ch2": {
+        "name": "ch2",
+        "burner_type": 1,
+        "channel_en": 1,
+        "file": 1,
+        "filea": {
+            "ac_gain": 3,
+            "fc": 99,
+            "ac_on_th": 1999,
+            "ac_on_tl": 600,
+            "max": 1600,
+            "min": 300,
+            "dc_gain": 1,
+            "dc_on_th": 1999,
+            "dc_on_tl": 0,
+            "freq_on_th": 126,
+            "freq_on_tl": 0,
+            "otd": 1,
+            "ffrt": 2
+        },
+        "fileb": {
+            "ac_gain": 2,
+            "fc": 99,
+            "ac_on_th": 1999,
+            "ac_on_tl": 600,
+            "max": 1600,
+            "min": 300,
+            "dc_gain": 1,
+            "dc_on_th": 1999,
+            "dc_on_tl": 0,
+            "freq_on_th": 126,
+            "freq_on_tl": 0,
+            "otd": 1,
+            "ffrt": 4
+        }
+    }
+}

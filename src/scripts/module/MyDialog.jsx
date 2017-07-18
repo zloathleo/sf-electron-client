@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class DeleteDialog extends React.Component {
 
@@ -27,14 +28,14 @@ class DeleteDialog extends React.Component {
 
 class ConfigDialog extends React.Component {
 
-    render() {
+    render() { 
         return (
             <div className="modal fade" id={this.props.id} role="dialog" aria-labelledby="myModalLabel">
-                <div className="modal-dialog" role="document">
+                <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 className="modal-title" id="myModalLabel">Config</h4>
+                            <h4 className="modal-title" id="myModalLabel">{this.props.title}</h4>
                         </div>
                         <div className="modal-body">
                             {this.props.body()}
@@ -48,6 +49,10 @@ class ConfigDialog extends React.Component {
             </div>
         )
     };
+}
+
+ConfigDialog.PropsType = {
+    title: PropTypes.string
 }
 
 module.exports = { DeleteDialog, ConfigDialog };

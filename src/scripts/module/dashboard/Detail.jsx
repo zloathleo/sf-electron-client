@@ -1,4 +1,8 @@
 import React from 'react';
+
+import Const from '../Const.jsx'
+import EventProxy from '../EventProxy.jsx'
+
 import DetailGauge from './DetailGauge.jsx';
 import DetailHelp from './DetailHelp.jsx';
 import DetailConfigPanel from './DetailConfigPanel.jsx';
@@ -6,16 +10,32 @@ import { ConfigDialog } from '../MyDialog.jsx';
 
 class Detail extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        //init event action
+        this.configModalRender = this.configModalRender.bind(this);
+    }
+
     componentDidMount() {
     }
 
-    actionConfigClick() {
+    actionUserSettingClick(_param) {
+        console.log(_param)
+        let detailUserSettingJson = require("../../../assets/datas/detail-user-setting.json");
+        setTimeout(this.onDetailConfigDatasLoaded.bind(this, detailUserSettingJson), 1000 * 1);
 
+
+    }
+
+    onDetailConfigDatasLoaded(detailUserSettingJson) {
+        console.log('detailUserSettingJson:' + detailUserSettingJson);
+        this.detailConfigPanel.setState({ data: detailUserSettingJson });
     }
 
     configModalRender() {
         return (
-            <DetailConfigPanel />
+            <DetailConfigPanel ref={(ref) => this.detailConfigPanel = ref} />
         );
     }
 
@@ -23,7 +43,7 @@ class Detail extends React.Component {
         const data = this.props.data;
         return (
             <div>
-                <ConfigDialog id="configModal" body={this.configModalRender} />
+                <ConfigDialog id="configModal" title="User Settings" body={this.configModalRender} />
                 <div className="row">
                     <div className="col-xs-12 detail-row">
                         <div className="col-xs-6 detail-card">
@@ -33,7 +53,7 @@ class Detail extends React.Component {
                                     <h4 className="panel-title">{data.name}-CH1</h4>
                                     <span className="badge">No.{data.addr}</span>
                                     <div className="panel-control">
-                                        <a className="cursor-pointer" title="" data-toggle="modal" data-target="#configModal" ><i className="fa fa-cog"></i></a>
+                                        <a className="cursor-pointer" onClick={this.actionUserSettingClick.bind(this, 123)} title="" data-toggle="modal" data-target="#configModal" ><i className="fa fa-cog"></i></a>
                                     </div>
                                 </div>
                                 <div className="panel-body">
@@ -41,22 +61,22 @@ class Detail extends React.Component {
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">ON_TH</span><span className="pull-right">{data.ch1.onth}</span></li>
-                                                    <li><span className="field-name">ON_TL</span><span className="pull-right">{data.ch1.ontl}</span></li>
-                                                    <li><span className="field-name">MAX</span><span className="pull-right">{data.ch1.max}</span></li>
-                                                    <li><span className="field-name">MIN</span><span className="pull-right">{data.ch1.min}</span></li>
-                                                    <li><span className="field-name">DC</span><span className="pull-right">{data.ch1.dc}</span></li>
-                                                    <li><span className="field-name">AC</span><span className="pull-right">{data.ch1.ac}</span></li>
-                                                    <li><span className="field-name">FREQ</span><span className="pull-right">{data.ch1.freq}</span></li>
+                                                    <li><span className="field-name">ON_TH</span><span className="pull-right dsdigi-font">{data.ch1.onth}</span></li>
+                                                    <li><span className="field-name">ON_TL</span><span className="pull-right dsdigi-font">{data.ch1.ontl}</span></li>
+                                                    <li><span className="field-name">MAX</span><span className="pull-right dsdigi-font">{data.ch1.max}</span></li>
+                                                    <li><span className="field-name">MIN</span><span className="pull-right dsdigi-font">{data.ch1.min}</span></li>
+                                                    <li><span className="field-name">DC</span><span className="pull-right dsdigi-font">{data.ch1.dc}</span></li>
+                                                    <li><span className="field-name">AC</span><span className="pull-right dsdigi-font">{data.ch1.ac}</span></li>
+                                                    <li><span className="field-name">FREQ</span><span className="pull-right dsdigi-font">{data.ch1.freq}</span></li>
                                                 </ul>
                                             </div>
                                             <div className="col-md-6">
                                                 <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">TYPE</span><span className="pull-right">{data.ch1.freq}</span></li>
-                                                    <li><span className="field-name">STATUS</span><span className="pull-right">{data.ch1.status}</span></li>
-                                                    <li><span className="field-name">FAULT</span><span className="pull-right">{data.ch1.fault}</span></li>
-                                                    <li><span className="field-name">TEMP</span><span className="pull-right">{data.ch1.temp}</span></li>
-                                                    <li><span className="field-name">FQ</span><span className="pull-right">{data.ch1.fq}%</span></li>
+                                                    <li><span className="field-name">TYPE</span><span className="pull-right dsdigi-font">{data.ch1.freq}</span></li>
+                                                    <li><span className="field-name">STATUS</span><span className="pull-right dsdigi-font">{data.ch1.status}</span></li>
+                                                    <li><span className="field-name">FAULT</span><span className="pull-right dsdigi-font">{data.ch1.fault}</span></li>
+                                                    <li><span className="field-name">TEMP</span><span className="pull-right dsdigi-font">{data.ch1.temp}</span></li>
+                                                    <li><span className="field-name">FQ</span><span className="pull-right dsdigi-font">{data.ch1.fq}%</span></li>
                                                     <li><span className="pull-right"><DetailGauge value={data.ch1.fq} ref={(ref) => this.detailGaugeCh1 = ref} /></span></li>
                                                 </ul>
                                             </div>
@@ -80,22 +100,22 @@ class Detail extends React.Component {
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">ON_TH</span><span className="pull-right">{data.ch2.onth}</span></li>
-                                                    <li><span className="field-name">ON_TL</span><span className="pull-right">{data.ch2.ontl}</span></li>
-                                                    <li><span className="field-name">MAX</span><span className="pull-right">{data.ch2.max}</span></li>
-                                                    <li><span className="field-name">MIN</span><span className="pull-right">{data.ch2.min}</span></li>
-                                                    <li><span className="field-name">DC</span><span className="pull-right">{data.ch2.dc}</span></li>
-                                                    <li><span className="field-name">AC</span><span className="pull-right">{data.ch2.ac}</span></li>
-                                                    <li><span className="field-name">FREQ</span><span className="pull-right">{data.ch2.freq}</span></li>
+                                                    <li><span className="field-name">ON_TH</span><span className="pull-right dsdigi-font">{data.ch2.onth}</span></li>
+                                                    <li><span className="field-name">ON_TL</span><span className="pull-right dsdigi-font">{data.ch2.ontl}</span></li>
+                                                    <li><span className="field-name">MAX</span><span className="pull-right dsdigi-font">{data.ch2.max}</span></li>
+                                                    <li><span className="field-name">MIN</span><span className="pull-right dsdigi-font">{data.ch2.min}</span></li>
+                                                    <li><span className="field-name">DC</span><span className="pull-right dsdigi-font">{data.ch2.dc}</span></li>
+                                                    <li><span className="field-name">AC</span><span className="pull-right dsdigi-font">{data.ch2.ac}</span></li>
+                                                    <li><span className="field-name">FREQ</span><span className="pull-right dsdigi-font">{data.ch2.freq}</span></li>
                                                 </ul>
                                             </div>
                                             <div className="col-md-6">
                                                 <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">TYPE</span><span className="pull-right">{data.ch2.freq}</span></li>
-                                                    <li><span className="field-name">STATUS</span><span className="pull-right">{data.ch2.status}</span></li>
-                                                    <li><span className="field-name">FAULT</span><span className="pull-right">{data.ch2.fault}</span></li>
-                                                    <li><span className="field-name">TEMP</span><span className="pull-right">{data.ch2.temp}</span></li>
-                                                    <li><span className="field-name">FQ</span><span className="pull-right">{data.ch2.fq}%</span></li>
+                                                    <li><span className="field-name">TYPE</span><span className="pull-right dsdigi-font">{data.ch2.freq}</span></li>
+                                                    <li><span className="field-name">STATUS</span><span className="pull-right dsdigi-font">{data.ch2.status}</span></li>
+                                                    <li><span className="field-name">FAULT</span><span className="pull-right dsdigi-font">{data.ch2.fault}</span></li>
+                                                    <li><span className="field-name">TEMP</span><span className="pull-right dsdigi-font">{data.ch2.temp}</span></li>
+                                                    <li><span className="field-name">FQ</span><span className="pull-right dsdigi-font">{data.ch2.fq}%</span></li>
                                                     <li><span className="pull-right"><DetailGauge value={data.ch2.fq} ref={(ref) => this.detailGaugeCh2 = ref} /></span></li>
                                                 </ul>
                                             </div>

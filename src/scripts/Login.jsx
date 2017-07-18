@@ -58,22 +58,4 @@ ReactDOM.render(
     document.getElementById('login-form-parent')
 );
 
-// function requestLogin() {
-//     let _username = $('input#username').val();
-//     let _password = $('input#password').val();
-//     console.log('_username:' + _username);
-//     console.log('_password:' + _password);
-//     window.location.href = 'overview.html';
-// }
-
-// function initUI() {
-//     $("button#login").click(function () {
-//         requestLogin();
-//     });
-// }
-
-// $(document).ready(function () {
-//     initUI();
-// });
-
 
