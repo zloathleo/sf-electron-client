@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+import HttpRequest from './module/common/HttpRequest.jsx';
+
 class LoginForm extends React.Component {
 
     constructor(props) {
@@ -21,20 +23,15 @@ class LoginForm extends React.Component {
 
         sessionStorage.setItem("server.url", url);
 
-
-        axios.defaults.baseURL = 'http://' + url;
-        axios.defaults.headers.common['Origin'] = 'http://electron';
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        axios.defaults.headers.patch['Content-Type'] = 'application/x-www-form-urlencoded';
+        HttpRequest.init(url);
 
         let url_req = '/users/admin';
 
         var params = new URLSearchParams();
-        params.append('password', '21232F297A57A5A743894A0E4A801FC31');
+        params.append('password', '21232F297A57A5A743894A0E4A801FC3');
 
-        axios.patch(url_req, params, {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, 
-        }).then(function (response) {
+        HttpRequest.axios.patch(url_req, params).then(function (response) {
+            console.log("ok");
             console.log(response);
         }).catch(function (error) {
             console.log(error);
