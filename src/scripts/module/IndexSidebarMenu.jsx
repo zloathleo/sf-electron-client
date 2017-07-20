@@ -7,8 +7,7 @@ import EventProxy from './EventProxy.jsx'
 class IndexSidebarMenu extends React.Component {
 
     constructor(props) {
-        super(props);
-        console.log(Const.KeyAlarm);
+        super(props); 
         this.actionClickItem = this.actionClickItem.bind(this);
     }
 

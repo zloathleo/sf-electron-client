@@ -29,8 +29,6 @@ class IndexPageInnerBreadcrumb extends React.Component {
 class IndexPageMain extends React.Component {
 
     componentDidMount() {
-        // console.log("IndexPageMain componentDidMount");
-        // EventProxy.trigger(Const.Event_DataLoading, 0);
     }
 
     render() {
@@ -38,30 +36,22 @@ class IndexPageMain extends React.Component {
         switch (this.props.moduleName) {
             case Const.KeyDashboard: {
                 return (
-                    <div style={{ padding: '10px' }}>
-                        <DashboardPage />
-                    </div>
+                    <DashboardPage />
                 )
             }
             case Const.KeyAlarm: {
                 return (
-                    <div style={{ padding: '10px' }}>
-                        <AlarmPage />
-                    </div>
+                    <AlarmPage />
                 )
             }
             case Const.KeyConfiguration: {
                 return (
-                    <div style={{ padding: '10px' }}>
-                        <ConfigPage />
-                    </div>
+                    <ConfigPage />
                 )
             }
             case Const.KeyUser: {
                 return (
-                    <div style={{ padding: '10px' }}>
-                        <UserPage />
-                    </div>
+                    <UserPage />
                 )
             }
         }

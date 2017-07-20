@@ -14,8 +14,7 @@ class AlarmPage extends React.Component {
     }
 
     componentDidMount() {
-        this.requestInitDatas();
-        this.buttonSearch.button("loading");
+        this.requestInitDatas(); 
     }
 
     //初始化数据

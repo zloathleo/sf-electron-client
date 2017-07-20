@@ -36,7 +36,7 @@ class ConfigPage extends React.Component {
                         </div>
                         <div className="panel-body">
                             <ul className="list-unstyled weather-info">
-                                <li><span className="field-name">History File Max Size</span><span className="pull-right"><input type="number" defaultValue={360} /></span></li>
+                                <li><span className="field-name">History File Max Size</span><span className="pull-right field-value-component"><input type="number" defaultValue={360} /></span></li>
                             </ul>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ class ConfigPage extends React.Component {
                         </div>
                         <div className="panel-body">
                             <ul className="list-unstyled weather-info">
-                                <li><span className="field-name">I/O Port</span><span className="pull-right">
+                                <li><span className="field-name">I/O Port</span><span className="pull-right field-value-component">
 
                                     <div className="btn-group">
                                         <button type="button" className="btn btn-success">I/O Port</button>
@@ -67,7 +67,7 @@ class ConfigPage extends React.Component {
                                     </div>
 
                                 </span></li>
-                                <li><span className="field-name">Boad Rate</span><span className="pull-right"><input type="number" defaultValue={9600} /></span></li>
+                                <li><span className="field-name">Boad Rate</span><span className="pull-right field-value-component"><input type="number" defaultValue={9600} /></span></li>
                             </ul>
                         </div>
                     </div>
@@ -84,8 +84,8 @@ class ConfigPage extends React.Component {
                         </div>
                         <div className="panel-body">
                             <ul className="list-unstyled weather-info">
-                                <li><span className="field-name">This Product is Licensed to</span><span className="pull-right"><input type="text" defaultValue='Safefire' /></span></li>
-                                <li><span className="field-name">Company/Organization Logo</span><span className="pull-right"><input type="text" defaultValue='safefire.png' /></span></li>
+                                <li><span className="field-name">This Product is Licensed to</span><span className="pull-right field-value-component"><input type="text" defaultValue='Safefire' /></span></li>
+                                <li><span className="field-name">Company/Organization Logo</span><span className="pull-right field-value-component"><input type="text" defaultValue='safefire.png' /></span></li>
                             </ul>
                         </div>
                     </div>

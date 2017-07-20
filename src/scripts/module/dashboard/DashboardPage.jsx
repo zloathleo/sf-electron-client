@@ -48,7 +48,7 @@ class DashboardPage extends React.Component {
 
     //请求探头详情数据
     actionRequestDetail() {
-        setTimeout(this.onRequestDetailDataLoaded, 1000);
+        setTimeout(this.onRequestDetailDataLoaded, 1000 * 1);
     }
 
     onRequestDetailDataLoaded() {

@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
         let url_req = '/users/admin';
 
         var params = new URLSearchParams();
-        params.append('password', '21232F297A57A5A743894A0E4A801FC3');
+        params.append('password', '21232F297A57A5A743894A0E4A801FC31');
 
         axios.patch(url_req, params, {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, 
@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
 
     render() {
         return (<div className="login-form">
-            <input ref={(ref) => this.inputServerURL = ref} type="text" defaultValue="192.168.2.99:8080" />
+            <input ref={(ref) => this.inputServerURL = ref} type="text" defaultValue="192.168.2.194:8080" />
             <input ref={(ref) => this.inputUserName = ref} type="text" placeholder="username" />
             <input ref={(ref) => this.inputPassword = ref} type="password" placeholder="password" />
             <button onClick={this.requestLogin}>login</button>
