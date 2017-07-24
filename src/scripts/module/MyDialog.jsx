@@ -28,7 +28,7 @@ class DeleteDialog extends React.Component {
 
 class ConfigDialog extends React.Component {
 
-    render() { 
+    render() {
         return (
             <div className="modal fade" id={this.props.id} role="dialog" aria-labelledby="myModalLabel">
                 <div className="modal-dialog modal-lg" role="document">
@@ -42,7 +42,7 @@ class ConfigDialog extends React.Component {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-info">Save</button>
+                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.props.okFunc}>Save</button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,9 @@ class ConfigDialog extends React.Component {
 }
 
 ConfigDialog.PropsType = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    body: PropTypes.func,
+    okFunc: PropTypes.func
 }
 
 module.exports = { DeleteDialog, ConfigDialog };

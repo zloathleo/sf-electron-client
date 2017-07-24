@@ -85,7 +85,7 @@ class ChannelPanel extends React.Component {
     }
 }
 
-class DetailConfigPanel extends React.Component {
+class DetailUserConfigPanel extends React.Component {
 
     constructor(props) {
         super(props);
@@ -127,4 +127,4 @@ class DetailConfigPanel extends React.Component {
     };
 }
 
-module.exports = DetailConfigPanel;
+module.exports = DetailUserConfigPanel;

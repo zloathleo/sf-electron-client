@@ -68,7 +68,7 @@ class DetailHelp extends React.Component {
                                         <li><span className="field-name">ON_TH</span><span className="pull-right">ON Threshold in High</span></li>
                                         <li><span className="field-name"></span><span className="pull-right field-value-component"><Choice selectIndex={0} labels={['F', 'C']} /></span></li>
                                         <li><span className="field-name"></span><span className="pull-right field-value-component">
-                                            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#factoryConfigModal" onClick={this.actionFactorySettingClick.bind(this)}>Factory Settings</button>
+                                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#factoryConfigModal" onClick={this.actionFactorySettingClick.bind(this)}>Factory Settings</button>
                                         </span></li>
                                     </ul>
                                 </div>

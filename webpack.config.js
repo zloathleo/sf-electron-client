@@ -4,9 +4,7 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: {
-    login: './src/scripts/Login.jsx',
-
+  entry: {  
     index: './src/scripts/Index.jsx',
 
   },

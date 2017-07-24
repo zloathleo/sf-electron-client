@@ -14,7 +14,7 @@ class AlarmPage extends React.Component {
     }
 
     componentDidMount() {
-        this.requestInitDatas(); 
+        this.requestInitDatas();
     }
 
     //初始化数据
@@ -30,29 +30,29 @@ class AlarmPage extends React.Component {
         return (
 
             <div className="panel panel-dark">
-                <div className="alarm-table-head">
-                    <div>
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-success">AMP ID</button>
-                            <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span className="caret"></span>
-                                <span className="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul className="dropdown-menu">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                            </ul>
-                        </div>
+                <div className="panel-heading">
 
-                        <button type="button" ref={(ref) => this.buttonSearch = ref} className="btn btn-info alarm-table-head-button">Search</button>
-
-                        <div className="alarm-table-head-right">
-                            <button type="button" className="btn btn-info alarm-table-head-button">Save To File</button>
-                            <button type="button" className="btn btn-info alarm-table-head-button">Clear</button>
-                        </div>
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-success">AMP ID</button>
+                        <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span className="caret"></span>
+                            <span className="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                        </ul>
                     </div>
+
+                    <button type="button" ref={(ref) => this.buttonSearch = ref} className="btn btn-primary panel-head-button">Search</button>
+
+                    <div className="panel-head-right">
+                        <button type="button" className="btn btn-primary panel-head-button">Save To File</button>
+                        <button type="button" className="btn btn-primary panel-head-button">Clear</button>
+                    </div>
+
                 </div>
 
                 <div className="panel-body">
@@ -74,7 +74,7 @@ class AlarmPage extends React.Component {
                                         <th style={{ width: '100px' }}>TEMP</th>
                                         <th style={{ width: '100px' }}>Fault</th>
                                         <th style={{ width: '100px' }}>AC Gain</th>
- 
+
                                         <th style={{ width: '100px' }}>AC OnTH_H</th>
                                     </tr>
                                 </thead>

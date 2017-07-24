@@ -15,6 +15,10 @@
     border-bottom: 1px solid rgba(120,130,140,0.3);
 }
 
+.login-box .logo-name { 
+    font-size: 52px; 
+}
+
 .page-footer{
     position: fixed;
     float: right;
@@ -34,9 +38,9 @@
 }
 
 .panel .panel-heading {
-    padding: 0px 0px 10px 0px!important; 
+    padding: 0px 0px 5px 0px!important;
     height: auto;
-    border-bottom:1px solid rgba(120,130,140,0.4);
+    border-bottom: 1px solid rgba(120,130,140,0.4);
     margin-bottom: 5px;
 }
 
@@ -73,12 +77,17 @@
 }
 
 /** custom UI **/
+.row-panel{  
+    margin-bottom: 5px;
+    background: rgba(85, 85, 85, 0.2);
+}
+
 .row-title{
     float: left;
-    padding: 20px 0px 0px 5px;
+    padding: 15px 0px 0px 0px;
     font-size: 24px;
     width: 30px;
-    color: white;
+    color: #ccc;
 }
 
 .row-delete-icon{
@@ -87,45 +96,39 @@
     right: 0px;
     top: 0px;
 }
+
+
  
-.amplifier{  
-    padding: 0px 3px 0px 3px; 
+.amplifier-column{  
+    padding: 0px 5px 0px 0px; 
     max-width: 130px;
     width: 15%;
 }
  
-.amplifier-content-all{
-    position: relative; 
-    width: 100%;
-    /*height: 76px;*/
-    text-align: center; 
-    padding: 5px 0px 0px 0px; 
-    background: #333;
-    display: inline-block;  
-    -webkit-column-break-inside: avoid;
-    -moz-column-break-inside: avoid;  
-    transition: all .2s ease;
+.amplifier-content-all{ 
+    padding: 10px;
+    background: #333; 
+    -moz-column-break-inside: avoid; 
+    display: flex;
 }
+
+.amplifier-title{ 
+    height: 100%;  
+    align-self: center;
+} 
 
 .amplifier-plus{ 
-    padding: 21px 0px 21px 0px;  
-}
+    height: 69px;
+} 
 
-.amplifier-content{
-    display:flex;
-    background: #333;
-    padding: 5px 0px 5px 10px; 
-}
-
-.amplifier-title{
-    border-bottom: 1px solid #E6E9ED;
-    padding: 1px 10px 5px 10px;
+.amplifier-plus-icon{ 
+    align-self: center;
+    left: 38%;
+    position: absolute;
 }
  
-.amplifier-fire-div{ 
-    display:grid;
-    margin: 0px 0px 0px 13px;
-    text-align: left;
+.amplifier-fire-div{  
+    padding: 0px 0px 0px 10px;
 }
 
 /**火焰图标大小**/
@@ -264,12 +267,13 @@
     border-bottom:1px solid rgba(120,130,140,0.4);
 }
 
-.alarm-table-head-right{
+.panel-head-right{
     float: right; 
 }
 
-.alarm-table-head-button{
-    margin-left: 5px;
+.panel-head-button{
+    margin-left: 2px;
+    margin-right: 0px;
 }
 
 /**config**/ 
@@ -281,5 +285,11 @@
 .config-inner-panel{ 
     margin-bottom: 0px !important;
     padding: 0px !important;
+}
+
+/**lock screen **/
+.lock-screen-logo {
+    display: block; 
+    text-align: center;
 }
 

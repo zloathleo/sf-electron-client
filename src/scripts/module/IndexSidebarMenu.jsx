@@ -34,43 +34,43 @@ class IndexSidebarMenu extends React.Component {
 
     render() {
         switch (this.props.moduleName) {
-            case Const.KeyDashboard: {
+            case Const.Key_ModuleChange_Dashboard: {
                 return (
                     <ul className="menu accordion-menu" onClick={this.actionClickItem}>
-                        <li data-key={Const.KeyDashboard} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
-                        <li data-key={Const.KeyAlarm}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
-                        <li data-key={Const.KeyConfiguration}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
-                        <li data-key={Const.KeyUser}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Dashboard} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Alarm}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Configuration}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_User}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
                     </ul>
                 )
             }
-            case Const.KeyAlarm: {
+            case Const.Key_ModuleChange_Alarm: {
                 return (
                     <ul className="menu accordion-menu" onClick={this.actionClickItem}>
-                        <li data-key={Const.KeyDashboard} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
-                        <li data-key={Const.KeyAlarm} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
-                        <li data-key={Const.KeyConfiguration}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
-                        <li data-key={Const.KeyUser}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Dashboard} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Alarm} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Configuration}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_User}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
                     </ul>
                 )
             }
-            case Const.KeyConfiguration: {
+            case Const.Key_ModuleChange_Configuration: {
                 return (
                     <ul className="menu accordion-menu" onClick={this.actionClickItem}>
-                        <li data-key={Const.KeyDashboard} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
-                        <li data-key={Const.KeyAlarm} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
-                        <li data-key={Const.KeyConfiguration} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
-                        <li data-key={Const.KeyUser}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Dashboard} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Alarm} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Configuration} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_User}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
                     </ul>
                 )
             }
-            case Const.KeyUser: {
+            case Const.Key_ModuleChange_User: {
                 return (
                     <ul className="menu accordion-menu" onClick={this.actionClickItem}>
-                        <li data-key={Const.KeyDashboard} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
-                        <li data-key={Const.KeyAlarm} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
-                        <li data-key={Const.KeyConfiguration}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
-                        <li data-key={Const.KeyUser} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Dashboard} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-fire"></span><p>Dashboard</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Alarm} ><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-exclamation-sign"></span><p>Alarm</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_Configuration}><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-cog"></span><p>Configuration</p></a></li>
+                        <li data-key={Const.Key_ModuleChange_User} className="active"><a href="#" className="waves-effect waves-button"><span className="menu-icon glyphicon glyphicon-user"></span><p>User</p></a></li>
                     </ul>
                 )
             }

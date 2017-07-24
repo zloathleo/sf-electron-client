@@ -13,7 +13,7 @@ const Tray = electron.Tray
 
 const logoImagePath = path.join(__dirname, '/public/assets/images/logo.png');
 const logoPath = path.join('file://', __dirname, '/public/html/logo.html');
-const appLoginPath = path.join('file://', __dirname, '/public/html/login.html')
+const appLoginPath = path.join('file://', __dirname, '/public/html/index.html')
 
 let mainWindow;
 let logoWindow; 

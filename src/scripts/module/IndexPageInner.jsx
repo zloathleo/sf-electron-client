@@ -34,22 +34,22 @@ class IndexPageMain extends React.Component {
     render() {
         EventProxy.trigger(Const.Event_DataLoading, 0);
         switch (this.props.moduleName) {
-            case Const.KeyDashboard: {
+            case Const.Key_ModuleChange_Dashboard: {
                 return (
                     <DashboardPage />
                 )
             }
-            case Const.KeyAlarm: {
+            case Const.Key_ModuleChange_Alarm: {
                 return (
                     <AlarmPage />
                 )
             }
-            case Const.KeyConfiguration: {
+            case Const.Key_ModuleChange_Configuration: {
                 return (
                     <ConfigPage />
                 )
             }
-            case Const.KeyUser: {
+            case Const.Key_ModuleChange_User: {
                 return (
                     <UserPage />
                 )
@@ -70,17 +70,20 @@ class IndexPageInner extends React.Component {
 
     constructor(props) {
         super(props);
+
+
     }
 
     render() {
+        // <div className="page-title">
+        //         <div className="page-breadcrumb">
+        //             {/**导航**/}
+        //             <IndexPageInnerBreadcrumb moduleName={this.props.moduleName} />
+        //         </div>
+        //     </div>
         return (
             <div className="page-inner">
-                <div className="page-title">
-                    <div className="page-breadcrumb">
-                        {/**导航**/}
-                        <IndexPageInnerBreadcrumb moduleName={this.props.moduleName} />
-                    </div>
-                </div>
+
                 <div>
                     {/**主内容**/}
                     <IndexPageMain moduleName={this.props.moduleName} />

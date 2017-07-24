@@ -31,7 +31,7 @@ class ConfigPage extends React.Component {
                         <div className="panel-heading">
                             <h4 className="panel-title">Server Config</h4>
                             <div className="panel-control">
-                                <button type="button" className="btn btn-info">Save</button>
+                                <button type="button" className="btn btn-primary">Save</button>
                             </div>
                         </div>
                         <div className="panel-body">
@@ -47,7 +47,7 @@ class ConfigPage extends React.Component {
                         <div className="panel-heading">
                             <h4 className="panel-title">Communication Config</h4>
                             <div className="panel-control">
-                                <button type="button" className="btn btn-info">Save</button>
+                                <button type="button" className="btn btn-primary">Save</button>
                             </div>
                         </div>
                         <div className="panel-body">
@@ -79,7 +79,7 @@ class ConfigPage extends React.Component {
                         <div className="panel-heading">
                             <h4 className="panel-title">License Config</h4>
                             <div className="panel-control">
-                                <button type="button" className="btn btn-info">Save</button>
+                                <button type="button" className="btn btn-primary">Save</button>
                             </div>
                         </div>
                         <div className="panel-body">

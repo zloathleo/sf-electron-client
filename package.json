@@ -19,6 +19,7 @@
     "browser-request": "^0.3.3",
     "copy-webpack-plugin": "^4.0.1",
     "electron": "~1.6.2",
+    "node-forge": "^0.7.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-bootstrap-switch": "^15.5.0-a",

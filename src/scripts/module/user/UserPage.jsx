@@ -26,26 +26,26 @@ class UserPage extends React.Component {
     render() {
         return (
             <div className="panel panel-dark">
-                <div className="alarm-table-head">
-                    <div>
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-success">Type</button>
-                            <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span className="caret"></span>
-                                <span className="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul className="dropdown-menu">
-                                <li><a href="#">Manager</a></li>
-                                <li><a href="#">Guest</a></li>
-                            </ul>
-                        </div>
+                <div className="panel-heading">
 
-                        <button type="button" className="btn btn-info alarm-table-head-button">Search</button>
-
-                        <div className="alarm-table-head-right">
-                            <button type="button" className="btn btn-info alarm-table-head-button">Create User</button>
-                        </div>
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-primary">Type</button>
+                        <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span className="caret"></span>
+                            <span className="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li><a href="#">Manager</a></li>
+                            <li><a href="#">Guest</a></li>
+                        </ul>
                     </div>
+
+                    <button type="button" className="btn btn-primary panel-head-button">Search</button>
+
+                    <div className="panel-head-right">
+                        <button type="button" className="btn btn-primary panel-head-button">Create User</button>
+                    </div>
+
                 </div>
 
                 <div className="panel-body">

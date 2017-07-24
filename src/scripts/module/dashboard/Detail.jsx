@@ -5,7 +5,7 @@ import EventProxy from '../EventProxy.jsx'
 
 import DetailGauge from './DetailGauge.jsx';
 import DetailHelp from './DetailHelp.jsx';
-import DetailConfigPanel from './DetailConfigPanel.jsx';
+import DetailUserConfigPanel from './DetailUserConfigPanel.jsx';
 import { ConfigDialog } from '../MyDialog.jsx';
 
 class Detail extends React.Component {
@@ -26,12 +26,12 @@ class Detail extends React.Component {
 
     onDetailConfigDatasLoaded(detailUserSettingJson) {
         console.log('detailUserSettingJson:' + detailUserSettingJson);
-        this.detailConfigPanel.setState({ data: detailUserSettingJson });
+        this.detailUserConfigPanel.setState({ data: detailUserSettingJson });
     }
 
     configModalRender() {
         return (
-            <DetailConfigPanel ref={(ref) => this.detailConfigPanel = ref} />
+            <DetailUserConfigPanel ref={(ref) => this.detailUserConfigPanel = ref} />
         );
     }
 

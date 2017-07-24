@@ -1,227 +1,90 @@
 {
-    "name": "COM3",
-    "rows": [
-        {
-            "title": "A",
-            "items": [
-                {
-                    "name": "No.1",
-                    "addr": 1,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第一层1号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第一层1号角CH2",
-                            "state": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "No.2",
-                    "addr": 2,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第一层2号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第一层2号角CH2",
-                            "state": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "No.2",
-                    "addr": 2,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第一层2号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第一层2号角CH2",
-                            "state": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "No.2",
-                    "addr": 2,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第一层2号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第一层2号角CH2",
-                            "state": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "No.2",
-                    "addr": 2,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第一层2号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第一层2号角CH2",
-                            "state": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "No.2",
-                    "addr": 2,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第一层2号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第一层2号角CH2",
-                            "state": 0
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "B",
-            "items": [
-                {
-                    "name": "No.3",
-                    "addr": 3,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第二层1号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第二层1号角CH2",
-                            "state": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "No.4",
-                    "addr": 4,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第二层2号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第二层2号角CH2",
-                            "state": 0
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "C",
-            "items": [
-                {
-                    "name": "No.5",
-                    "addr": 3,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第二层1号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第二层1号角CH2",
-                            "state": 0
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "D",
-            "items": [
-                {
-                    "name": "No.5",
-                    "addr": 3,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第二层1号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第二层1号角CH2",
-                            "state": 0
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "E",
-            "items": [
-                {
-                    "name": "No.5",
-                    "addr": 3,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第二层1号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第二层1号角CH2",
-                            "state": 0
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "F",
-            "items": [
-                {
-                    "name": "No.5",
-                    "addr": 3,
-                    "chs": [
-                        {
-                            "name": "CH1",
-                            "desc": "第二层1号角CH1",
-                            "state": 1
-                        },
-                        {
-                            "name": "CH2",
-                            "desc": "第二层1号角CH2",
-                            "state": 0
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+	"name": "Layout-Default",
+	"com": "COM3",
+	"baud_rate": 9600,
+	"rows": [
+		{
+			"index": 0,
+			"title": "A",
+			"items": [
+				{
+					"name": "A1",
+					"addr": 1,
+					"chs": [
+						{
+							"name": "CH1",
+							"desc": "第一层1号角CH1",
+							"state": 1
+						}, {
+							"name": "CH2",
+							"desc": "第一层1号角CH2",
+							"state": 0
+						}
+					]
+				}, {
+					"name": "A2",
+					"addr": 2,
+					"chs": [
+						{
+							"name": "CH1",
+							"desc": "第一层2号角CH1",
+							"state": 1
+						}, {
+							"name": "CH2",
+							"desc": "第一层2号角CH2",
+							"state": 0
+						}
+					]
+				}, {
+					"name": "A3",
+					"addr": 3,
+					"chs": [
+						{
+							"name": "CH1",
+							"desc": "第一层2号角CH1",
+							"state": 1
+						}, {
+							"name": "CH2",
+							"desc": "第一层2号角CH2",
+							"state": 0
+						}
+					]
+				}
+			]
+		}, {
+			"index": 1,
+			"title": "B",
+			"items": [
+				{
+					"name": "B1",
+					"addr": 7,
+					"chs": [
+						{
+							"name": "CH1",
+							"desc": "第二层1号角CH1",
+							"state": 1
+						}, {
+							"name": "CH2",
+							"desc": "第二层1号角CH2",
+							"state": 0
+						}
+					]
+				}, {
+					"name": "B2",
+					"addr": 8,
+					"chs": [
+						{
+							"name": "CH1",
+							"desc": "第二层2号角CH1",
+							"state": 1
+						}, {
+							"name": "CH2",
+							"desc": "第二层2号角CH2",
+							"state": 0
+						}
+					]
+				}
+			]
+		}
+	]
 }
