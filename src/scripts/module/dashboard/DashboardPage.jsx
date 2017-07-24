@@ -18,15 +18,12 @@ class DashboardConfigPanel extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.overviewData.com);
-        console.log(this.props.overviewData.baud_rate);
     }
 
     //保存设置
     actionConfigOKButtonClick() {
         this.props.overviewData.baud_rate = parseInt(this.baudRateInput.value);
-        this.props.overviewData.com = "COM3";
-        console.log(comInput.value());
+        this.props.overviewData.com = this.comInput.value();
     }
 
     render() {

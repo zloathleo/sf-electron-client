@@ -18,7 +18,7 @@ class ButtonMenu extends React.Component {
     };
 
     value(){
-        return this.select.selectedOptions.value;
+        return this.select.value;
     }
 
 }
