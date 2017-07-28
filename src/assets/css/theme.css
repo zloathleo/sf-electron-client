@@ -77,6 +77,11 @@
 }
 
 /** custom UI **/
+/** button **/
+.large-button {
+    width : 300px;
+}
+
 .row-panel{  
     margin-bottom: 5px;
     background: rgba(85, 85, 85, 0.2);
