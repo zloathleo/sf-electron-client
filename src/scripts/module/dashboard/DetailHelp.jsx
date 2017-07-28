@@ -1,7 +1,10 @@
 import React from 'react';
 
+
+import HttpRequest from '../common/HttpRequest.jsx';
+
 import Choice from '../common/Choice.jsx'
-import DetailSystemConfigPanel from './DetailSystemConfigPanel.jsx'
+import DetailSystemSettingsPanel from './DetailSystemSettingsPanel.jsx'
 import { ConfigDialog } from '../MyDialog.jsx';
 
 //详情的注释
@@ -9,9 +12,9 @@ class DetailHelp extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.detailSystemConfigPanel = undefined;
+        this.detailSystemSettingsPanel = undefined;
         this.factorySettingModalRender = this.factorySettingModalRender.bind(this);
+        this.onSystemSettingDatasLoaded = this.onSystemSettingDatasLoaded.bind(this);
     }
 
     handleSwitch(elem, state) {
@@ -23,17 +26,17 @@ class DetailHelp extends React.Component {
     }
 
     actionFactorySettingClick() {
-        let systemSettingJson = require("../../../assets/datas/detail-system-setting.json");
-        setTimeout(this.onSystemSettingDatasLoaded.bind(this, systemSettingJson), 1000 * 1);
+        let detailName = this.props.data.name;
+        HttpRequest.axios.get('/detail/' + detailName + '/systemsettings').then(this.onSystemSettingDatasLoaded);
     }
 
-    onSystemSettingDatasLoaded(systemSettingJson) {
-        this.detailSystemConfigPanel.setState({ data: systemSettingJson });
+    onSystemSettingDatasLoaded(response) {
+        this.detailSystemSettingsPanel.setState({ data: response.data });
     }
 
     factorySettingModalRender() {
         return (
-            <DetailSystemConfigPanel ref={(ref) => this.detailSystemConfigPanel = ref} />
+            <DetailSystemSettingsPanel ref={(ref) => this.detailSystemSettingsPanel = ref} />
         );
     }
 

@@ -85,11 +85,30 @@ class ChannelPanel extends React.Component {
     }
 }
 
-class DetailUserConfigPanel extends React.Component {
+class DetailUserSettingsPanel extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = { data: undefined };
+    }
+
+    renderNav(chn) {
+        if (chn == 1) {
+            return (
+                <ul className="nav nav-tabs">
+                    <li role="presentation" className="active"><a href="#ch1" data-toggle="tab">CH1</a></li>
+                    <li role="presentation"><a href="#ch2" data-toggle="tab">CH2</a></li>
+                </ul>
+            )
+        } else {
+            return (
+                <ul className="nav nav-tabs">
+                    <li role="presentation" ><a href="#ch1" data-toggle="tab">CH1</a></li>
+                    <li role="presentation" className="active"><a href="#ch2" data-toggle="tab">CH2</a></li>
+                </ul>
+            )
+        }
+
     }
 
     render() {
@@ -103,12 +122,10 @@ class DetailUserConfigPanel extends React.Component {
                 </div>
             )
         } else {
+            let chn = this.props.chn;
             return (
                 <div>
-                    <ul className="nav nav-tabs">
-                        <li role="presentation" className="active"><a href="#ch1" data-toggle="tab">CH1</a></li>
-                        <li role="presentation"><a href="#ch2" data-toggle="tab">CH2</a></li>
-                    </ul>
+                    {this.renderNav(chn)}
                     <div className="tab-content">
                         <div className="tab-pane fade in active" id="ch1">
                             <ChannelPanel data={_data.ch1} />
@@ -127,4 +144,4 @@ class DetailUserConfigPanel extends React.Component {
     };
 }
 
-module.exports = DetailUserConfigPanel;
+module.exports = DetailUserSettingsPanel;

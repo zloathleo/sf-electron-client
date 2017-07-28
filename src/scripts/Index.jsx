@@ -17,6 +17,12 @@ class IndexBody extends React.Component {
         super(props);
         this.state = { uiName: Const.Key_UIChange_Login, moduleName: Const.Key_ModuleChange_Dashboard };
 
+
+
+        toastr.options.positionClass = "toast-bottom-center";
+    }
+
+    componentDidMount() {
         //login index 切换
         EventProxy.on(Const.Event_UIChange, (key) => {
             if (key == Const.Key_UIChange_Login) {
@@ -39,12 +45,12 @@ class IndexBody extends React.Component {
                 waitingDialog.hide();
             }
         });
-
-        toastr.options.positionClass = "toast-bottom-center";
     }
 
-    componentDidMount() {
-
+    componentWillUnmount() {
+        EventProxy.off(Const.Event_UIChange);
+        EventProxy.off(Const.Event_ModuleChange);
+        EventProxy.off(Const.Event_DataLoading);
     }
 
     render() {

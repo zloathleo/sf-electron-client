@@ -28,8 +28,6 @@ class IndexPageInnerBreadcrumb extends React.Component {
  */
 class IndexPageMain extends React.Component {
 
-    componentDidMount() {
-    }
 
     render() {
         EventProxy.trigger(Const.Event_DataLoading, 0);

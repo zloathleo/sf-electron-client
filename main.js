@@ -1,13 +1,14 @@
 const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
 
-const ipc = electron.ipcMain
+// Module to control application life.
+const app = electron.app
+// Module to create native browser window.
+const BrowserWindow = electron.BrowserWindow
+const globalShortcut = electron.globalShortcut
+const ipcMain = electron.ipcMain
 const Menu = electron.Menu
 const Tray = electron.Tray
 
@@ -16,8 +17,27 @@ const logoPath = path.join('file://', __dirname, '/public/html/logo.html');
 const appLoginPath = path.join('file://', __dirname, '/public/html/index.html')
 
 let mainWindow;
-let logoWindow; 
+let logoWindow;
 let screenSize;
+
+function readyInit() {
+    console.log('chrome ver.' + process.versions.chrome);
+    _showLogoWindow();
+
+    //进度条
+    var _percent = 0.1;
+    var timer;
+    timer = setInterval(function () {
+        logoWindow.setProgressBar(_percent);
+        _percent = _percent + 0.1;
+        if (_percent >= 1) {
+            clearInterval(timer);
+        }
+    }, 200);
+
+    //打开主界面
+    setTimeout(_showMainWindow, 2000);
+}
 
 function _showLogoWindow() {
     let electronScreen = electron.screen
@@ -49,19 +69,30 @@ function _showMainWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         frame: true,
+        center: true,
         icon: logoImagePath,
-        width: screenSize.width * 0.7,
-        height: screenSize.height * 0.7,
+        width: screenSize.width * 0.9,
+        height: screenSize.height * 0.9,
+        autoHideMenuBar: true,
+        minWidth: 1024,
+        minHeight: 768,
+
         show: false,
         //禁用 Node.js
         webPreferences: {
-            nodeIntegration: false
+            nodeIntegration: true
         }
     })
 
     mainWindow.loadURL(appLoginPath);
 
     initTray();
+
+    initShortcut();
+
+    //进程间通讯
+    initIpc();
+
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
@@ -79,6 +110,16 @@ function _showMainWindow() {
 
 }
 
+//初始化快捷键
+function initShortcut() {
+    globalShortcut.register('Ctrl+F11', function () {
+        mainWindow.setFullScreen(!mainWindow.isFullScreen());
+    })
+    globalShortcut.register('Ctrl+F12', function () {
+        mainWindow.webContents.openDevTools()
+    })
+}
+
 //初始化Tray
 function initTray() {
     let appTray = new Tray(logoImagePath);
@@ -92,27 +133,16 @@ function initTray() {
     appTray.setContextMenu(contextMenu);
 }
 
-function rodinxExit() {
-    app.quit();
+//进程间通讯
+function initIpc() {
+    ipcMain.on('client-ipc-menu-close', function (event, arg) {
+        console.log('ipc recivice:' + arg);
+        rodinxExit();
+    })
 }
 
-function readyInit() {
-    console.log('chrome ver.' + process.versions.chrome);
-    _showLogoWindow();
-
-    //进度条
-    var _percent = 0.1;
-    var timer;
-    timer = setInterval(function () {
-        logoWindow.setProgressBar(_percent);
-        _percent = _percent + 0.1;
-        if (_percent >= 1) {
-            clearInterval(timer);
-        }
-    }, 500);
-
-    //打开主界面
-    setTimeout(_showMainWindow, 5000);
+function rodinxExit() {
+    app.quit();
 }
 
 // This method will be called when Electron has finished 
@@ -122,6 +152,11 @@ app.on('ready', readyInit);
 app.on('window-all-closed', function () {
     rodinxExit();
 });
+
+//退出
+app.on('will-quit', function () {
+    globalShortcut.unregisterAll()
+})
 
 app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the

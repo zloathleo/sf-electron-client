@@ -55,7 +55,7 @@
 }
  
 .panel .panel-body { 
-    padding: 0px 10px!important; 
+    padding: 0px 5px!important; 
 }   
 
 .dropdown-menu li a {
@@ -95,9 +95,7 @@
     font-size: 14px;
     right: 0px;
     top: 0px;
-}
-
-
+} 
  
 .amplifier-column{  
     padding: 0px 5px 0px 0px; 
@@ -106,7 +104,7 @@
 }
  
 .amplifier-content-all{ 
-    padding: 10px;
+    padding: 10px 10px 7px 10px;
     background: #333; 
     -moz-column-break-inside: avoid; 
     display: flex;

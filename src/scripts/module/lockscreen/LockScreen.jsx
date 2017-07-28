@@ -29,7 +29,6 @@ class LockScreen extends React.Component {
     }
 
     render() {
-
         return (
             <main className="page-content">
                 <div className="page-inner">

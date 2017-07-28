@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: {  
+  entry: {
     index: './src/scripts/Index.jsx',
 
   },
@@ -18,8 +18,8 @@ module.exports = {
     'react': "React",
     'react-dom': 'ReactDOM'
   },
-
   devtool: 'source-map',
+ 
 
   module: {
     rules: [ //加载器   

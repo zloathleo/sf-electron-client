@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import Const from '../Const.jsx'
-import EventProxy from '../EventProxy.jsx'
 import forge from 'node-forge';
+
+import Const from '../Const.jsx';
+import EventProxy from '../EventProxy.jsx';
 
 import HttpRequest from '../common/HttpRequest.jsx';
 
@@ -38,7 +38,7 @@ class Login extends React.Component {
         }
     }
 
-    requestLogin(aaa) {
+    requestLogin() {
         this.buttonLogin.setAttribute("disabled", "disabled");
 
         let url = this.inputServerURL.value;

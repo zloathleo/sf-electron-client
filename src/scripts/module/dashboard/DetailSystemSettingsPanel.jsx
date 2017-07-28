@@ -224,7 +224,7 @@ class CheckEnablesPanel extends React.Component {
 
 }
 
-class DetailSystemConfigPanel extends React.Component {
+class DetailSystemSettingsPanel extends React.Component {
 
     constructor(props) {
         super(props);
@@ -255,4 +255,4 @@ class DetailSystemConfigPanel extends React.Component {
 
 }
 
-module.exports = DetailSystemConfigPanel;
+module.exports = DetailSystemSettingsPanel;

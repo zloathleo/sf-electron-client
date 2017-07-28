@@ -1,7 +1,10 @@
 import React from 'react';
 
-import Const from './Const.jsx'
-import EventProxy from './EventProxy.jsx'
+import Const from './Const.jsx';
+import EventProxy from './EventProxy.jsx';
+
+// import electron from 'electron';
+// const ipcRenderer = electron.ipcRenderer;
 
 class IndexNavBar extends React.Component {
 
@@ -11,6 +14,11 @@ class IndexNavBar extends React.Component {
 
     actionLockScreenClick() {
         EventProxy.trigger(Const.Event_UIChange, Const.Key_UIChange_Lock);
+    }
+
+    actionExitClick() {
+        console.log('client-ipc-menu-close');
+        // ipcRenderer.send('client-ipc-menu-close', 'close');
     }
 
     render() {
@@ -38,6 +46,11 @@ class IndexNavBar extends React.Component {
                             <li>
                                 <a href="#" onClick={this.actionLogoutClick} className="log-out waves-effect waves-button waves-classNameic">
                                     <span><i className="fa fa-sign-out m-r-xs"></i>Log out</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onClick={this.actionExitClick} className="log-out waves-effect waves-button waves-classNameic">
+                                    <span><i className="fa fa-sign-out m-r-xs"></i>Exit</span>
                                 </a>
                             </li>
                         </ul>

@@ -3,131 +3,165 @@ import React from 'react';
 import Const from '../Const.jsx'
 import EventProxy from '../EventProxy.jsx'
 
+import HttpRequest from '../common/HttpRequest.jsx';
+
 import DetailGauge from './DetailGauge.jsx';
 import DetailHelp from './DetailHelp.jsx';
-import DetailUserConfigPanel from './DetailUserConfigPanel.jsx';
-import { ConfigDialog } from '../MyDialog.jsx';
+import DetailUserSettingsPanel from './DetailUserSettingsPanel.jsx';
+import XModal from '../XModal.jsx';
+
+class DetailCard extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.detailUserSettingsPanel = undefined;
+        //action
+        this.actionUserSettingClick = this.actionUserSettingClick.bind(this);
+        this.onDetailUserSettingsLoaded = this.onDetailUserSettingsLoaded.bind(this);
+    }
+
+    //usersettings
+    actionUserSettingClick(_param) {
+        let dname = this.props.dname;
+        HttpRequest.axios.get('/detail/' + this.props.dname + '/usersettings').then(this.onDetailUserSettingsLoaded);
+    }
+    onDetailUserSettingsLoaded(response) {
+        this.userSettingsModal.openModal();
+        this.detailUserSettingsPanel.setState({ data: response.data });
+    }
+    actionConfigOKButtonClick() {
+        console.log('ok');
+    }
+    //usersettings
+
+    render() {
+        let dname = this.props.dname;
+        let addr = this.props.addr;
+        let ch = this.props.ch;
+        let chn = this.props.chn;
+        return (
+            <div className="col-xs-6 detail-card">
+                <div className="panel panel-dark detail-panel">
+
+                    <div className="panel-heading">
+                        <h4 className="panel-title">{dname}-CH{chn}</h4>
+                        <span className="badge">{addr}</span>
+                        <div className="panel-control">
+                            <a className="cursor-pointer" onClick={this.actionUserSettingClick.bind(this, 123)} >
+                                <i className="fa fa-cog"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div className="panel-body">
+
+                        <XModal ref={(ref) => this.userSettingsModal = ref} title="User Settings"
+                            body={<DetailUserSettingsPanel ref={(ref) => this.detailUserSettingsPanel = ref} chn={chn} />}
+                            okFunc={this.actionConfigOKButtonClick} />
+
+                        <div className="row">
+                            <div className="col-md-6">
+                                <ul className="list-unstyled weather-info">
+                                    <li><span className="field-name">ON_TH</span><span className="pull-right field-value-dsdigi-font">{ch.onth}</span></li>
+                                    <li><span className="field-name">ON_TL</span><span className="pull-right field-value-dsdigi-font">{ch.ontl}</span></li>
+                                    <li><span className="field-name">MAX</span><span className="pull-right field-value-dsdigi-font">{ch.max}</span></li>
+                                    <li><span className="field-name">MIN</span><span className="pull-right field-value-dsdigi-font">{ch.min}</span></li>
+                                    <li><span className="field-name">DC</span><span className="pull-right field-value-dsdigi-font">{ch.dc}</span></li>
+                                    <li><span className="field-name">AC</span><span className="pull-right field-value-dsdigi-font">{ch.ac}</span></li>
+                                    <li><span className="field-name">FREQ</span><span className="pull-right field-value-dsdigi-font">{ch.freq}</span></li>
+                                </ul>
+                            </div>
+                            <div className="col-md-6">
+                                <ul className="list-unstyled weather-info">
+                                    <li><span className="field-name">TYPE</span><span className="pull-right field-value-dsdigi-font">{ch.type}</span></li>
+                                    <li><span className="field-name">STATUS</span><span className="pull-right field-value-dsdigi-font">{ch.status}</span></li>
+                                    <li><span className="field-name">FAULT</span><span className="pull-right field-value-dsdigi-font">{ch.fault}</span></li>
+                                    <li><span className="field-name">TEMP</span><span className="pull-right field-value-dsdigi-font">{ch.temp}</span></li>
+                                    <li><span className="field-name">FQ</span><span className="pull-right field-value-dsdigi-font">{ch.fq}%</span></li>
+                                    <li><span className="pull-right">  </span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
 
 class Detail extends React.Component {
 
     constructor(props) {
-        super(props); 
-        this.configModalRender = this.configModalRender.bind(this);
+        super(props);
+        this.state = { uiUpdate: 0 };
+        this.detailName = props.detailName;
+        this.detailData = props.data;
+
+        //是否已经Mount
+        this.isSelfMount = true;
+        //刷新频率
+        this.refreshInterval = 1000 * 1;
+        //实时请求失败次数
+        this.refreshStatusFaultCount = 0;
+
+        //refresh data
+        this.refreshStatusInterval = undefined;
+        this.refreshStatus = this.refreshStatus.bind(this);
+        this.onRefreshStatusLoaded = this.onRefreshStatusLoaded.bind(this);
     }
 
+    //初始化detail数据
     componentDidMount() {
+        this.isSelfMount = true;
+        this.refreshStatus();
     }
 
-    actionUserSettingClick(_param) {
-        console.log(_param)
-        let detailUserSettingJson = require("../../../assets/datas/detail-user-setting.json");
-        setTimeout(this.onDetailConfigDatasLoaded.bind(this, detailUserSettingJson), 1000 * 1); 
+
+    componentWillUnmount() {
+        this.isSelfMount = false;
+        clearTimeout(this.refreshStatusInterval);
     }
 
-    onDetailConfigDatasLoaded(detailUserSettingJson) {
-        console.log('detailUserSettingJson:' + detailUserSettingJson);
-        this.detailUserConfigPanel.setState({ data: detailUserSettingJson });
+    //刷新detail
+    refreshStatus() {
+        HttpRequest.axios.get('/detail/' + this.detailName).then(this.onRefreshStatusLoaded).catch(function (error) {
+            this.refreshStatusFaultCount++;
+            if (this.refreshStatusFaultCount >= 5) {
+                this.refreshStatusInterval = setTimeout(this.refreshStatus, 1000 * 10);
+            } else {
+                this.refreshStatusInterval = setTimeout(this.refreshStatus, this.refreshInterval);
+            }
+        }.bind(this));
     }
-
-    configModalRender() {
-        return (
-            <DetailUserConfigPanel ref={(ref) => this.detailUserConfigPanel = ref} />
-        );
+    onRefreshStatusLoaded(response) {
+        this.refreshStatusFaultCount = 0;
+        if (this.isSelfMount) {
+            this.detailData = response.data;
+            this.setState({ uiUpdate: (this.state.uiUpdate++) });
+            this.refreshStatusInterval = setTimeout(this.refreshStatus, 1000 * 1)
+        }
     }
+    //刷新detail
 
     render() {
-        const data = this.props.data;
-        return (
-            <div>
-                <ConfigDialog id="configModal" title="User Settings" body={this.configModalRender} />
-                <div className="row">
-                    <div className="col-xs-12 detail-row">
-                        <div className="col-xs-6 detail-card">
-                            <div className="panel panel-dark detail-panel">
-
-                                <div className="panel-heading">
-                                    <h4 className="panel-title">{data.name}-CH1</h4>
-                                    <span className="badge">No.{data.addr}</span>
-                                    <div className="panel-control">
-                                        <a className="cursor-pointer" onClick={this.actionUserSettingClick.bind(this, 123)} title="" data-toggle="modal" data-target="#configModal" ><i className="fa fa-cog"></i></a>
-                                    </div>
-                                </div>
-                                <div className="panel-body">
-                                  
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">ON_TH</span><span className="pull-right field-value-dsdigi-font">{data.ch1.onth}</span></li>
-                                                    <li><span className="field-name">ON_TL</span><span className="pull-right field-value-dsdigi-font">{data.ch1.ontl}</span></li>
-                                                    <li><span className="field-name">MAX</span><span className="pull-right field-value-dsdigi-font">{data.ch1.max}</span></li>
-                                                    <li><span className="field-name">MIN</span><span className="pull-right field-value-dsdigi-font">{data.ch1.min}</span></li>
-                                                    <li><span className="field-name">DC</span><span className="pull-right field-value-dsdigi-font">{data.ch1.dc}</span></li>
-                                                    <li><span className="field-name">AC</span><span className="pull-right field-value-dsdigi-font">{data.ch1.ac}</span></li>
-                                                    <li><span className="field-name">FREQ</span><span className="pull-right field-value-dsdigi-font">{data.ch1.freq}</span></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">TYPE</span><span className="pull-right field-value-dsdigi-font">{data.ch1.freq}</span></li>
-                                                    <li><span className="field-name">STATUS</span><span className="pull-right field-value-dsdigi-font">{data.ch1.status}</span></li>
-                                                    <li><span className="field-name">FAULT</span><span className="pull-right field-value-dsdigi-font">{data.ch1.fault}</span></li>
-                                                    <li><span className="field-name">TEMP</span><span className="pull-right field-value-dsdigi-font">{data.ch1.temp}</span></li>
-                                                    <li><span className="field-name">FQ</span><span className="pull-right field-value-dsdigi-font">{data.ch1.fq}%</span></li>
-                                                    <li><span className="pull-right"><DetailGauge value={data.ch1.fq} ref={(ref) => this.detailGaugeCh1 = ref} /></span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-xs-6 detail-card">
-                            <div className="panel panel-dark detail-panel">
-                                <div className="panel-heading">
-                                    <h4 className="panel-title">{data.name}-CH2</h4>
-                                    <span className="badge">No.{data.addr}</span>
-                                    <div className="panel-control">
-                                        <a href="javascript:void(0);" title=""><i className="fa fa-cog"></i></a>
-                                    </div>
-                                </div>
-                                <div className="panel-body">
-                                    
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">ON_TH</span><span className="pull-right field-value-dsdigi-font">{data.ch2.onth}</span></li>
-                                                    <li><span className="field-name">ON_TL</span><span className="pull-right field-value-dsdigi-font">{data.ch2.ontl}</span></li>
-                                                    <li><span className="field-name">MAX</span><span className="pull-right field-value-dsdigi-font">{data.ch2.max}</span></li>
-                                                    <li><span className="field-name">MIN</span><span className="pull-right field-value-dsdigi-font">{data.ch2.min}</span></li>
-                                                    <li><span className="field-name">DC</span><span className="pull-right field-value-dsdigi-font">{data.ch2.dc}</span></li>
-                                                    <li><span className="field-name">AC</span><span className="pull-right field-value-dsdigi-font">{data.ch2.ac}</span></li>
-                                                    <li><span className="field-name">FREQ</span><span className="pull-right field-value-dsdigi-font">{data.ch2.freq}</span></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <ul className="list-unstyled weather-info">
-                                                    <li><span className="field-name">TYPE</span><span className="pull-right field-value-dsdigi-font">{data.ch2.freq}</span></li>
-                                                    <li><span className="field-name">STATUS</span><span className="pull-right field-value-dsdigi-font">{data.ch2.status}</span></li>
-                                                    <li><span className="field-name">FAULT</span><span className="pull-right field-value-dsdigi-font">{data.ch2.fault}</span></li>
-                                                    <li><span className="field-name">TEMP</span><span className="pull-right field-value-dsdigi-font">{data.ch2.temp}</span></li>
-                                                    <li><span className="field-name">FQ</span><span className="pull-right field-value-dsdigi-font">{data.ch2.fq}%</span></li>
-                                                    <li><span className="pull-right"><DetailGauge value={data.ch2.fq} ref={(ref) => this.detailGaugeCh2 = ref} /></span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                 
-                                </div>
-                            </div>
+        const data = this.detailData;
+        if (!data) {
+            return null;
+        } else {
+            return (
+                <div>
+                    <div className="row">
+                        <div className="col-xs-12 detail-row">
+                            <DetailCard dname={data.name} addr={data.addr} ch={data.ch1} chn={1} />
+                            <DetailCard dname={data.name} addr={data.addr} ch={data.ch2} chn={2} />
                         </div>
                     </div>
+                    <DetailHelp data={data} />
                 </div>
-
-                <DetailHelp data={data}/>
-            </div>
-        )
-    };
-
+            )
+        };
+    }
 }
 
 module.exports = Detail;

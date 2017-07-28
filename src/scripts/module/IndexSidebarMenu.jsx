@@ -21,8 +21,7 @@ class IndexSidebarMenu extends React.Component {
         if (parentElement.tagName.toUpperCase() != "LI") {
             parentElement = parentElement.parentElement;
         }
-        let key = parentElement.getAttribute("data-key");
-        console.log('key:' + key);
+        let key = parentElement.getAttribute("data-key"); 
         if (key == undefined) {
             console.log('error:' + key);
         } else {

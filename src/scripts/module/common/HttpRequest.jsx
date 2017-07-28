@@ -12,7 +12,7 @@ const HttpRequest = {
     init: function (url) {
         this.axios = axios.create({
             baseURL: 'http://' + url,
-            timeout: 1000 * 10,
+            timeout: 1000 * 3,
             crossDomain: true,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
@@ -45,7 +45,11 @@ const HttpRequest = {
             // errorMessage = error.message;
         }
         if (!errorMessage) {
-            errorMessage = error.config.url + ' can not connected.'
+            if (error.config) {
+                errorMessage = error.config.url + ' can not connected.';
+            } else {
+                errorMessage = error;
+            } 
         }
         toastr.error(errorMessage);
         return Promise.reject(error);
@@ -58,7 +62,7 @@ const HttpRequest = {
 
         // Add a request interceptor
         this.axios.interceptors.request.use(function (config) {
-            config.headers['access_token'] = token;
+            config.headers['Access-Token'] = token;
             return config;
         }, function (error) {
             return Promise.reject(error);

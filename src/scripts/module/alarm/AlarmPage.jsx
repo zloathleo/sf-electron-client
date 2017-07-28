@@ -3,12 +3,18 @@ import React from 'react';
 import Const from '../Const.jsx'
 import EventProxy from '../EventProxy.jsx'
 
+import HttpRequest from '../common/HttpRequest.jsx';
+
 class AlarmPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.requestInitDatas = this.requestInitDatas.bind(this);
 
+        this.alarmData = undefined;
+
+        //init
+        this.requestInitDatas = this.requestInitDatas.bind(this);
+        this.onRequestInitDatasLoaded = this.onRequestInitDatasLoaded.bind(this);
         //ui
         this.buttonSearch = undefined;
     }
@@ -19,16 +25,17 @@ class AlarmPage extends React.Component {
 
     //初始化数据
     requestInitDatas() {
-        setTimeout(this.onRequestInitDatasLoaded, 1000);
+        HttpRequest.axios.get('/alarm').then(this.onRequestInitDatasLoaded);
     }
 
-    onRequestInitDatasLoaded() {
-        EventProxy.trigger(Const.Event_DataLoading, 1);
+    onRequestInitDatasLoaded(response) {
+        this.alarmData = response.data;
+        console.log(this.alarmData);
     }
 
     render() {
+        let _data = this.alarmData;
         return (
-
             <div className="panel panel-dark">
                 <div className="panel-heading">
 
