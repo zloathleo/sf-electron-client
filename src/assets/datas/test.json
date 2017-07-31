@@ -1,0 +1,9 @@
+{
+    "server_time": "2017-07-01 12:00:00",
+    "user": "guest1",
+    "device_change": [
+        {
+            "A0": "changed"
+        }
+    ]
+}
