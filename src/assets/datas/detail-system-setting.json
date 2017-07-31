@@ -1,361 +1,267 @@
 {
-    "name": "A1",
-    "addr": 1,
-    "version_info": {
-        "amp_version": 2.0,
-        "ch1": 1.0,
-        "ch2": 1.0,
-        "fw_version": 1.2
-    },
-    "check_enables": {
-        "scan1": 0,
-        "scan2": 0,
-        "t1": 0,
-        "t2": 0,
-        "da1": 1,
-        "da2": 1,
-        "fram": 0
-    },
-    "ch1": {
-        "name": "ch1",
-        "ao_value": {
-            "ao_4ma_value": 0,
-            "ao_20ma_value": 4095
-        },
-        "filea": {
-            "ac": {
-                "l_band": 3,
-                "l_weight": 3,
-                "l_d": 3,
-                "weight_pl": 3,
-                "line_turn": 3,
-                "r_band": 3,
-                "r_weight": 3,
-                "r_d": 3,
-                "weight_ph": 3,
-                "line_param": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "dc": {
-                "weight_pl": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "frequency": {
-                "raise_v1": 500,
-                "raise_v2": 500,
-                "raise_num": 3,
-                "weight_pl": 3,
-                "drop_v1": 500,
-                "drop_v2": 500,
-                "drop_num": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            }
-        },
-        "fileb": {
-            "ac": {
-                "l_band": 4,
-                "l_weight": 3,
-                "l_d": 3,
-                "weight_pl": 3,
-                "line_turn": 3,
-                "r_band": 3,
-                "r_weight": 3,
-                "r_d": 3,
-                "weight_ph": 3,
-                "line_param": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "dc": {
-                "weight_pl": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "frequency": {
-                "raise_v1": 500,
-                "raise_v2": 500,
-                "raise_num": 3,
-                "weight_pl": 3,
-                "drop_v1": 500,
-                "drop_v2": 500,
-                "drop_num": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            }
-        }
-    },
-    "ch2": {
-        "name": "ch2",
-        "ao_value": {
-            "ao_4ma_value": 1,
-            "ao_20ma_value": 4095
-        },
-        "filea": {
-            "ac": {
-                "l_band": 5,
-                "l_weight": 3,
-                "l_d": 3,
-                "weight_pl": 3,
-                "line_turn": 3,
-                "r_band": 3,
-                "r_weight": 3,
-                "r_d": 3,
-                "weight_ph": 3,
-                "line_param": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "dc": {
-                "weight_pl": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "frequency": {
-                "raise_v1": 500,
-                "raise_v2": 500,
-                "raise_num": 3,
-                "weight_pl": 3,
-                "drop_v1": 500,
-                "drop_v2": 500,
-                "drop_num": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            }
-        },
-        "fileb": {
-            "ac": {
-                "l_band": 6,
-                "l_weight": 3,
-                "l_d": 3,
-                "weight_pl": 3,
-                "line_turn": 3,
-                "r_band": 3,
-                "r_weight": 3,
-                "r_d": 3,
-                "weight_ph": 3,
-                "line_param": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "dc": {
-                "weight_pl": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            },
-            "frequency": {
-                "raise_v1": 500,
-                "raise_v2": 500,
-                "raise_num": 3,
-                "weight_pl": 3,
-                "drop_v1": 500,
-                "drop_v2": 500,
-                "drop_num": 3,
-                "weight_ph": 3,
-                "weight_n": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_l": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ],
-                "weight_h": [
-                    0.05,
-                    0.2,
-                    0.2,
-                    0.55
-                ]
-            }
-        }
-    }
+	"name": "A1",
+	"addr": 1,
+	"version_info": {
+		"amp_version": 2.0,
+		"ch1": 1.0,
+		"ch2": 1.0,
+		"fw_version": 1.2
+	},
+	"check_enables": {
+		"scan1": 0,
+		"scan2": 0,
+		"t1": 0,
+		"t2": 0,
+		"da1": 1,
+		"da2": 1,
+		"fram": 0
+	},
+	"ch1": {
+		"name": "ch1",
+		"type": "IR",
+		"enable": true,
+		"file": 0,
+		"ao_value": {
+			"ao_4ma_value": 0,
+			"ao_20ma_value": 4095
+		},
+		"filea": {
+			"public": {
+				"otd": 1,
+				"ffrt": 3
+			},
+			"ac": {
+				"l_band": 3,
+				"l_weight": 3,
+				"l_d": 3,
+				"weight_pl": 3,
+				"line_turn": 3,
+				"r_band": 3,
+				"r_weight": 3,
+				"r_d": 3,
+				"weight_ph": 3,
+				"line_param": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"dc": {
+				"weight_pl": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"frequency": {
+				"raise_v1": 500,
+				"raise_v2": 500,
+				"raise_num": 3,
+				"weight_pl": 3,
+				"drop_v1": 500,
+				"drop_v2": 500,
+				"drop_num": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			}
+		},
+		"fileb": {
+			"ac": {
+				"l_band": 4,
+				"l_weight": 3,
+				"l_d": 3,
+				"weight_pl": 3,
+				"line_turn": 3,
+				"r_band": 3,
+				"r_weight": 3,
+				"r_d": 3,
+				"weight_ph": 3,
+				"line_param": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"dc": {
+				"weight_pl": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"frequency": {
+				"raise_v1": 500,
+				"raise_v2": 500,
+				"raise_num": 3,
+				"weight_pl": 3,
+				"drop_v1": 500,
+				"drop_v2": 500,
+				"drop_num": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			}
+		}
+	},
+	"ch2": {
+		"name": "ch2",
+		"type": "IR",
+		"enable": true,
+		"file": 0,
+		"ao_value": {
+			"ao_4ma_value": 0,
+			"ao_20ma_value": 4095
+		},
+		"filea": {
+			"public": {
+				"otd": 1,
+				"ffrt": 3
+			},
+			"ac": {
+				"l_band": 3,
+				"l_weight": 3,
+				"l_d": 3,
+				"weight_pl": 3,
+				"line_turn": 3,
+				"r_band": 3,
+				"r_weight": 3,
+				"r_d": 3,
+				"weight_ph": 3,
+				"line_param": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"dc": {
+				"weight_pl": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"frequency": {
+				"raise_v1": 500,
+				"raise_v2": 500,
+				"raise_num": 3,
+				"weight_pl": 3,
+				"drop_v1": 500,
+				"drop_v2": 500,
+				"drop_num": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			}
+		},
+		"fileb": {
+			"ac": {
+				"l_band": 4,
+				"l_weight": 3,
+				"l_d": 3,
+				"weight_pl": 3,
+				"line_turn": 3,
+				"r_band": 3,
+				"r_weight": 3,
+				"r_d": 3,
+				"weight_ph": 3,
+				"line_param": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"dc": {
+				"weight_pl": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			},
+			"frequency": {
+				"raise_v1": 500,
+				"raise_v2": 500,
+				"raise_num": 3,
+				"weight_pl": 3,
+				"drop_v1": 500,
+				"drop_v2": 500,
+				"drop_num": 3,
+				"weight_ph": 3,
+				"weight_n": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_l": [
+					0.05, 0.2, 0.2, 0.55
+				],
+				"weight_h": [
+					0.05, 0.2, 0.2, 0.55
+				]
+			}
+		}
+	}
 }

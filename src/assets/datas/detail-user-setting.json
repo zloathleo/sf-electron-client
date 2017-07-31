@@ -3,8 +3,8 @@
     "addr": 1,
     "ch1": {
         "name": "ch1",
-        "burner_type": 0,
-        "channel_en": 0,
+        "type": "IR",
+        "enable": true,
         "file": 0,
         "filea": {
             "ac_gain": 1,
@@ -39,8 +39,8 @@
     },
     "ch2": {
         "name": "ch2",
-        "burner_type": 1,
-        "channel_en": 1,
+        "type": "IR",
+        "enable": true,
         "file": 1,
         "filea": {
             "ac_gain": 3,
