@@ -1,11 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; 
 
-import Const from '../Const.jsx'
-import EventProxy from '../EventProxy.jsx'
-import forge from 'node-forge';
+import Global from '../common/Global.jsx'
+import EventProxy from '../common/EventProxy.jsx' 
 
-class LockScreen extends React.Component {
+class LockScreenPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,7 +19,7 @@ class LockScreen extends React.Component {
         let password = this.inputPassword.value;
         let passwordLocal = localStorage.getItem('user.password');
         if (passwordLocal == password) {
-            EventProxy.trigger(Const.Event_UIChange, Const.Key_UIChange_Index);
+            EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_Index);
         } else {
             toastr.error(this.userName + ',invalid password.');
         }
@@ -61,5 +59,5 @@ class LockScreen extends React.Component {
     }
 }
 
-module.exports = LockScreen;
+module.exports = LockScreenPage;
 

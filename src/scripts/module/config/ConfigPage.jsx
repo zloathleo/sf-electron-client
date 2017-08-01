@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Const from '../Const.jsx'
-import EventProxy from '../EventProxy.jsx'
+import Global from '../common/Global.jsx'
+import EventProxy from '../common/EventProxy.jsx'
 
 class ConfigPage extends React.Component {
 
@@ -20,7 +20,7 @@ class ConfigPage extends React.Component {
     }
 
     onRequestInitDatasLoaded() {
-        EventProxy.trigger(Const.Event_DataLoading, 1);
+        EventProxy.trigger(Global.Const.Event_DataLoading, 1);
     }
 
     render() {

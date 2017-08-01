@@ -1,14 +1,15 @@
 import React from 'react';
 
-import Const from '../Const.jsx'
-import EventProxy from '../EventProxy.jsx'
-
+import Global from '../common/Global.jsx'
+import EventProxy from '../common/EventProxy.jsx'
 import HttpRequest from '../common/HttpRequest.jsx';
+
+import XModal from '../commonui/XModal.jsx';
 
 import DetailGauge from './DetailGauge.jsx';
 import DetailHelp from './DetailHelp.jsx';
 import DetailUserSettingsPanel from './DetailUserSettingsPanel.jsx';
-import XModal from '../XModal.jsx';
+
 
 class DetailCard extends React.Component {
 

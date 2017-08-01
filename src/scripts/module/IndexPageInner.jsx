@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Const from './Const.jsx'
-import EventProxy from './EventProxy.jsx'
+import Global from './common/Global.jsx'
+import EventProxy from './common/EventProxy.jsx'
+
 import DashboardPage from './dashboard/DashboardPage.jsx';
 import AlarmPage from './alarm/AlarmPage.jsx';
 import ConfigPage from './config/ConfigPage.jsx';
@@ -30,24 +31,24 @@ class IndexPageMain extends React.Component {
 
 
     render() {
-        EventProxy.trigger(Const.Event_DataLoading, 0);
+        EventProxy.trigger(Global.Const.Event_DataLoading, 0);
         switch (this.props.moduleName) {
-            case Const.Key_ModuleChange_Dashboard: {
+            case Global.Const.Key_ModuleChange_Dashboard: {
                 return (
                     <DashboardPage />
                 )
             }
-            case Const.Key_ModuleChange_Alarm: {
+            case Global.Const.Key_ModuleChange_Alarm: {
                 return (
                     <AlarmPage />
                 )
             }
-            case Const.Key_ModuleChange_Configuration: {
+            case Global.Const.Key_ModuleChange_Configuration: {
                 return (
                     <ConfigPage />
                 )
             }
-            case Const.Key_ModuleChange_User: {
+            case Global.Const.Key_ModuleChange_User: {
                 return (
                     <UserPage />
                 )

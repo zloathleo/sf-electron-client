@@ -1,11 +1,11 @@
 import React from 'react';
 
-
 import HttpRequest from '../common/HttpRequest.jsx';
 
-import Choice from '../common/Choice.jsx'
+import Choice from '../commonui/Choice.jsx'
+
 import DetailSystemSettingsPanel from './DetailSystemSettingsPanel.jsx'
-import { ConfigDialog } from '../MyDialog.jsx';
+
 
 //详情的注释
 class DetailHelp extends React.Component {
@@ -44,7 +44,6 @@ class DetailHelp extends React.Component {
         const data = this.props.data;
         return (
             <div>
-                <ConfigDialog id="factoryConfigModal" title="Factory Settings" body={this.factorySettingModalRender} />
                 <div className="row">
                     <div className="col-xs-12 detail-all">
                         <div className="panel panel-dark detail-panel">

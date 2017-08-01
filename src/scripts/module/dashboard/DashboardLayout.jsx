@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; 
 
-import Const from '../Const.jsx'
+import Global from '../common/Global.jsx'
 import CommonTools from '../common/CommonTools.jsx'
-import ButtonMenu from '../common/ButtonMenu.jsx'
-
 import HttpRequest from '../common/HttpRequest.jsx';
+import EventProxy from '../common/EventProxy.jsx'
 
-import EventProxy from '../EventProxy.jsx'
+import ButtonMenu from '../commonui/ButtonMenu.jsx'
+import XModal from '../commonui/XModal.jsx';
+
 import OverviewContextMenu from './DashboardContextMenu.jsx';
 import Detail from './Detail.jsx';
-import XModal from '../XModal.jsx';
+
 
 //config 对话框
 class DashboardConfigPanel extends React.Component {
@@ -125,7 +125,7 @@ class DashboardLayout extends React.Component {
     //菜单放大器详情
     actionContextMenuItemClick(_key, selectItemName) {
         if ('detail' == _key) {
-            EventProxy.trigger(Const.Event_DashboardChange, { 'index': 2, 'selectItemName': selectItemName });
+            EventProxy.trigger(Global.Const.Event_DashboardChange, { 'index': 2, 'selectItemName': selectItemName });
         }
     }
     //菜单放大器详情

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Choice from '../common/Choice.jsx'
+import Choice from '../commonui/Choice.jsx'
 //系统配置界面
 
 class FilePanel extends React.Component {

@@ -1,66 +1,44 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import forge from 'node-forge';
 
-import Const from '../Const.jsx';
-import EventProxy from '../EventProxy.jsx';
-
+import Global from '../common/Global.jsx';
+import EventProxy from '../common/EventProxy.jsx';
 import HttpRequest from '../common/HttpRequest.jsx';
 
-class Login extends React.Component {
+//Admin 和 Root 用户 登录界面
+class LoginPage extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.inputServerURL = undefined;
-        this.inputUserName = undefined;
         this.inputPassword = undefined;
 
         //init
         this.requestLogin = this.requestLogin.bind(this);
     }
 
-    componentDidMount() {
-        let url = localStorage.getItem('server.url');
-        let userName = localStorage.getItem('user.name');
-        let password = localStorage.getItem('user.password');
-
-        if (url) {
-            this.inputServerURL.value = url;
-        }
-
-        if (userName) {
-            this.inputUserName.value = userName;
-        }
-
-        if (password) {
-            this.inputPassword.value = password;
-        }
-    }
-
     requestLogin() {
         this.buttonLogin.setAttribute("disabled", "disabled");
 
-        let url = this.inputServerURL.value;
-        let userName = this.inputUserName.value;
+        let url = localStorage.getItem('server.url');
+        let userName = this.props.userName.toLowerCase();
         let password = this.inputPassword.value;
 
         let md = forge.md.md5.create();
         md.update(password);
         let passwordMd5 = md.digest().toHex().toUpperCase();
 
-        HttpRequest.init(url);
         var params = new URLSearchParams();
         params.append('password', passwordMd5);
 
         let _then = function (response) {
             this.buttonLogin.removeAttribute("disabled");
-            HttpRequest.cahceUserToken(userName, password, response.data.token);
-            EventProxy.trigger(Const.Event_UIChange, Const.Key_UIChange_Index);
+            HttpRequest.afterLogin(userName, password, response.data.access_token);
+            EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_Index);
         }.bind(this);
 
-        let _catch = function (error) {
-            HttpRequest.errorHandle(error);
+        let _catch = function (error) { 
             this.buttonLogin.removeAttribute("disabled");
         }.bind(this);
 
@@ -68,6 +46,7 @@ class Login extends React.Component {
     }
 
     render() {
+        let userName = this.props.userName;
         return (
             <main className="page-content">
                 <div className="page-inner">
@@ -76,18 +55,12 @@ class Login extends React.Component {
                             <div className="col-md-3 center">
                                 <div className="login-box">
                                     <a href="index.html" className="logo-name text-lg text-center">RodinX</a>
-                                    <p className="text-center m-t-md">Please login into your account.</p>
+                                    <p className="text-center m-t-md">Please Enter {userName}'s Password.</p>
 
-                                    <div className="form-group">
-                                        <input ref={(ref) => this.inputServerURL = ref} type="text" className="form-control" placeholder="Server Host" required />
-                                    </div>
-                                    <div className="form-group">
-                                        <input ref={(ref) => this.inputUserName = ref} type="text" className="form-control" placeholder="User Name" required />
-                                    </div>
                                     <div className="form-group">
                                         <input ref={(ref) => this.inputPassword = ref} type="password" className="form-control" placeholder="Password" required />
                                     </div>
-                                    <button ref={(ref) => this.buttonLogin = ref} className="btn btn-primary btn-block" onClick={this.requestLogin}>Login</button>
+                                    <button ref={(ref) => this.buttonLogin = ref} className="btn btn-primary btn-block" onClick={this.requestLogin}>Authorize</button>
 
                                     <p className="text-center m-t-xs text-sm">2017 &copy; RodinX by Safefire.</p>
                                 </div>
@@ -100,5 +73,9 @@ class Login extends React.Component {
     }
 }
 
-module.exports = Login;
+LoginPage.PropsType = {
+    userName: PropTypes.string
+}
+
+module.exports = LoginPage;
 

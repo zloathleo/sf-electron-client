@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Const from '../Const.jsx'
-import EventProxy from '../EventProxy.jsx'
-
+import Global from '../common/Global.jsx'
+import EventProxy from '../common/EventProxy.jsx' 
 import HttpRequest from '../common/HttpRequest.jsx';
 
 class UserPage extends React.Component {

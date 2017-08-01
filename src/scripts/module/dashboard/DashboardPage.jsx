@@ -1,8 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; 
 
-import Const from '../Const.jsx'
-import EventProxy from '../EventProxy.jsx'
+import Global from '../common/Global.jsx'
+import EventProxy from '../common/EventProxy.jsx'
 
 import Detail from './Detail.jsx';
 import DashboardLayout from './DashboardLayout.jsx';
@@ -17,13 +16,13 @@ class DashboardPage extends React.Component {
 
     componentDidMount() {
         //layout - detail 切换
-        EventProxy.on(Const.Event_DashboardChange, (key) => {
+        EventProxy.on(Global.Const.Event_DashboardChange, (key) => {
             this.setState({ uiIndex: key.index, param: key.selectItemName });
         });
     }
     componentWillUnmount() {
         //layout - detail 切换
-        EventProxy.off(Const.Event_DashboardChange);
+        EventProxy.off(Global.Const.Event_DashboardChange);
     }
 
     render() {

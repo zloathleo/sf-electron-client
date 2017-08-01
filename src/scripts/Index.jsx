@@ -1,68 +1,92 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Const from './module/Const.jsx'
-import EventProxy from './module/EventProxy.jsx'
+import Global from './module/common/Global.jsx'
+import EventProxy from './module/common/EventProxy.jsx'
+import HttpRequest from './module/common/HttpRequest.jsx';
 
 import IndexNavBar from './module/IndexNavBar.jsx';
 import IndexSidebarMenu from './module/IndexSidebarMenu.jsx';
 import IndexPageInner from './module/IndexPageInner.jsx';
 
-import Login from './module/login/Login.jsx';
-import LockScreen from './module/lockscreen/LockScreen.jsx';
+import LoadingPage from './module/loading/LoadingPage.jsx';
+import LoginPage from './module/login/LoginPage.jsx';
+import GuestEnterPage from './module/login/GuestEnterPage.jsx';
+import LockScreenPage from './module/login/LockScreenPage.jsx';
 
 class IndexBody extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { uiName: Const.Key_UIChange_Login, moduleName: Const.Key_ModuleChange_Dashboard };
-
-
+        this.state = { uiName: Global.Const.Key_UIChange_Loading, moduleName: Global.Const.Key_ModuleChange_Dashboard };
 
         toastr.options.positionClass = "toast-bottom-center";
     }
 
     componentDidMount() {
         //login index 切换
-        EventProxy.on(Const.Event_UIChange, (key) => {
-            if (key == Const.Key_UIChange_Login) {
-                this.setState({ uiName: key, moduleName: Const.Key_ModuleChange_Dashboard });
+        EventProxy.on(Global.Const.Event_UIChange, (key) => {
+            if (key == Global.Const.Key_UIChange_AdminLogin || key == Global.Const.Key_UIChange_RootLogin) {
+                this.setState({ uiName: key, moduleName: Global.Const.Key_ModuleChange_Dashboard });
             } else {
                 this.setState({ uiName: key });
             }
         });
 
         //模块切换
-        EventProxy.on(Const.Event_ModuleChange, (key) => {
+        EventProxy.on(Global.Const.Event_ModuleChange, (key) => {
             this.setState({ moduleName: key });
         });
 
         //数据加载
-        EventProxy.on(Const.Event_DataLoading, (_state) => {
+        EventProxy.on(Global.Const.Event_DataLoading, (_state) => {
             if (_state == 0) {
                 waitingDialog.show('Loading ...');
             } else {
                 waitingDialog.hide();
             }
         });
+
+        let _initalize = HttpRequest.init(function () {
+            this.setState({ uiName: Global.Const.Key_UIChange_Index });
+        }.bind(this), function () {
+            this.setState({ uiName: Global.Const.Key_UIChange_GuestEnter });
+        }.bind(this));
+
+        if (_initalize) {
+            // waitingDialog.hide();
+            this.setState({ uiName: Global.Const.Key_UIChange_GuestEnter });
+        }
     }
 
     componentWillUnmount() {
-        EventProxy.off(Const.Event_UIChange);
-        EventProxy.off(Const.Event_ModuleChange);
-        EventProxy.off(Const.Event_DataLoading);
+        EventProxy.off(Global.Const.Event_UIChange);
+        EventProxy.off(Global.Const.Event_ModuleChange);
+        EventProxy.off(Global.Const.Event_DataLoading);
     }
 
     render() {
-        if (this.state.uiName == Const.Key_UIChange_Login) {
+        if (this.state.uiName == Global.Const.Key_UIChange_Loading) {
             return (
-                <Login />
+                <LoadingPage />
             )
-        } else if (this.state.uiName == Const.Key_UIChange_Lock) {
+        } else if (this.state.uiName == Global.Const.Key_UIChange_GuestEnter) {
             return (
-                <LockScreen />
+                <GuestEnterPage />
             )
-        } else if (this.state.uiName == Const.Key_UIChange_Index) {
+        } else if (this.state.uiName == Global.Const.Key_UIChange_AdminLogin) {
+            return (
+                <LoginPage userName={Global.Const.Value_User_Admin} />
+            )
+        } else if (this.state.uiName == Global.Const.Key_UIChange_RootLogin) {
+            return (
+                <LoginPage userName={Global.Const.Value_User_Root} />
+            )
+        } else if (this.state.uiName == Global.Const.Key_UIChange_Lock) {
+            return (
+                <LockScreenPage />
+            )
+        } else if (this.state.uiName == Global.Const.Key_UIChange_Index) {
             return (
                 <main className="page-content content-wrap">
                     <div className="navbar">
