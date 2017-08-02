@@ -8,12 +8,23 @@ class DropdownMenu extends React.Component {
 
     //进入admin登录界面
     actionLoginAdminClick() {
-        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_AdminLogin);
+        EventProxy.trigger(Global.Const.Event_UserChange, Global.Const.Value_User_Admin);
+    }
+
+    //进入Root登录界面
+    actionLoginRootClick() {
+        EventProxy.trigger(Global.Const.Event_UserChange, Global.Const.Value_User_Root);
     }
 
     //进入普通用户界面
     actionLogoutClick() {
+        var params = new URLSearchParams();
+        params.append('user', 'guest');
+
+        HttpRequest.axios.patch('/users/' + Global.Status.UserName);
         HttpRequest.afterLogout();
+        //logout 请求
+        EventProxy.trigger(Global.Const.Event_UserChange, Global.Const.Value_User_Guest);
     }
 
     actionLockScreenClick() {
@@ -25,9 +36,8 @@ class DropdownMenu extends React.Component {
         if (Global.Const.Value_User_Guest == userName) {
             return (
                 <ul className="dropdown-menu dropdown-list" role="menu">
+                    <li role="presentation"><a href="#" onClick={this.actionLoginRootClick}><i className="fa fa-lock"></i>Root</a></li>
                     <li role="presentation"><a href="#" onClick={this.actionLoginAdminClick}><i className="fa fa-lock"></i>Configuration</a></li>
-                    <li role="presentation" className="divider"></li>
-                    <li role="presentation"><a href="#" onClick={this.actionLockScreenClick}><i className="fa fa-lock"></i>Lock screen</a></li>
                 </ul>
             )
         } else {
@@ -53,7 +63,7 @@ class IndexNavBar extends React.Component {
     }
 
     render() {
-        let userName = localStorage.getItem('user.name');
+        let userName = Global.Status.UserName;
         if (!userName) {
             userName = Global.Const.Value_User_Guest;
         }

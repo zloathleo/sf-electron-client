@@ -1,6 +1,7 @@
 const Global = {
     Const: {
         Event_DataLoading: "dataLoading",
+        Event_UserChange: "userChange",
         Event_UIChange: "uiChange",
         Event_ModuleChange: "moduleChange",
         Event_DashboardChange: "dashboardChange",
@@ -17,15 +18,20 @@ const Global = {
 
         Key_ModuleChange_Dashboard: "Dashboard",
         Key_ModuleChange_Alarm: "Alarm",
-        Key_ModuleChange_Configuration: "Configuration",
-        Key_ModuleChange_User: "User",
+        Key_ModuleChange_Configuration: "Configuration", 
 
-        Value_User_Guest: "Guest",
-        Value_User_Admin: "Admin",
-        Value_User_Root: "Root",
+        LocalStorageKey_UserName: 'user.name',
+
+        Value_User_Guest: "guest",
+        Value_User_Admin: "admin",
+        Value_User_Root: "root",
     },
-    Status:{
-
+    Status: {
+        UserName: undefined,
+        UserPassword: undefined,
+        UserLoginToken: undefined,
+ 
+        RefreshThreadInterval: 1000,
     }
 
 }

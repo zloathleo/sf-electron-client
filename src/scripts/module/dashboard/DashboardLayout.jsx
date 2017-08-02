@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 
 import Global from '../common/Global.jsx'
 import CommonTools from '../common/CommonTools.jsx'
@@ -53,8 +53,6 @@ class DashboardLayout extends React.Component {
 
         //是否已经Mount
         this.isSelfMount = true;
-        //刷新频率
-        this.refreshInterval = 1000 * 1;
         //实时请求失败次数
         this.refreshStatusFaultCount = 0;
 
@@ -107,16 +105,18 @@ class DashboardLayout extends React.Component {
             if (this.refreshStatusFaultCount >= 5) {
                 this.refreshStatusInterval = setTimeout(this.refreshStatus, 1000 * 10);
             } else {
-                this.refreshStatusInterval = setTimeout(this.refreshStatus, this.refreshInterval);
+                this.refreshStatusInterval = setTimeout(this.refreshStatus, Global.Status.RefreshThreadInterval);
             }
         }.bind(this));
+
+
     }
     onRefreshStatusLoaded(response) {
         this.refreshStatusFaultCount = 0;
         if (this.isSelfMount) {
             this.overviewStatusData = response.data;
             this.setState({ uiUpdate: (this.state.uiUpdate++) });
-            this.refreshStatusInterval = setTimeout(this.refreshStatus, this.refreshInterval);
+            this.refreshStatusInterval = setTimeout(this.refreshStatus, Global.Status.RefreshThreadInterval);
         }
     }
     //刷新实时 
@@ -141,7 +141,7 @@ class DashboardLayout extends React.Component {
     }
 
     //打开配置对话框
-    actionConfigButtonClick() { 
+    actionConfigButtonClick() {
         this.dashboardConfigModal.openModal();
     }
 
@@ -239,8 +239,11 @@ class DashboardLayout extends React.Component {
 
     renderRow(row) {
         let items = row.items;
+
         //添加item 按钮
-        if (items.length < 6) {
+        if (items.length >= 6 || Global.Status.UserName == undefined) {
+            return items.map(this.buildItems)
+        } else if (items.length < 6) {
             let _content = items.map(this.buildItems);
 
             let _add = (<div className="col-xs-2 amplifier-column" key={-1} onClick={this.actionAddItem.bind(this, row)} >
@@ -252,9 +255,8 @@ class DashboardLayout extends React.Component {
             _content.push(_add);
             return _content;
 
-        } if (items.length >= 6) {
-            return items.map(this.buildItems)
         }
+
     }
 
     buildRows(row, i) {
@@ -278,27 +280,37 @@ class DashboardLayout extends React.Component {
         if (!_data) {
             return null;
         } else {
-            return (
-                <div className="panel panel-dark" >
-                    <div className="panel-heading">
-                        <h4 className="panel-title">{_data.name}</h4>
-                        <div className="panel-head-right">
-                            <button type="button" onClick={this.actionAddRowButtonClick} className="btn btn-primary panel-head-button">Add Row</button>
-                            <button type="button" onClick={this.actionDeleteLastRowButtonClick} className="btn btn-primary panel-head-button">Delete Last Row</button>
+            if (Global.Status.UserName) {
+                return (
+                    <div className="panel panel-dark" >
+                        <div className="panel-heading">
+                            <div className="panel-head-right">
+                                <button type="button" onClick={this.actionAddRowButtonClick} className="btn btn-primary panel-head-button">Add Row</button>
+                                <button type="button" onClick={this.actionDeleteLastRowButtonClick} className="btn btn-primary panel-head-button">Delete Last Row</button>
 
-                            <button type="button" onClick={this.actionConfigButtonClick} className="btn btn-primary panel-head-button">Config</button>
-                            <button type="button" onClick={this.actionSaveButtonClick} className="btn btn-primary panel-head-button">Save</button>
+                                <button type="button" onClick={this.actionConfigButtonClick} className="btn btn-primary panel-head-button">Config</button>
+                                <button type="button" onClick={this.actionSaveButtonClick} className="btn btn-primary panel-head-button">Save</button>
+                            </div>
                         </div>
-                    </div>
 
-                    {_data.rows.map(this.buildRows)}
-                    <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
-                    <XModal ref={(ref) => this.dashboardConfigModal = ref}
-                        title="Dashboard Settings"
-                        body={<DashboardConfigPanel ref={(ref) => this.dashboardConfigBody = ref} overviewData={_data} />}
-                        okFunc={this.actionConfigOKButtonClick} />
-                </div>
-            );
+                        {_data.rows.map(this.buildRows)}
+                        <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
+                        <XModal ref={(ref) => this.dashboardConfigModal = ref}
+                            title="Dashboard Settings"
+                            body={<DashboardConfigPanel ref={(ref) => this.dashboardConfigBody = ref} overviewData={_data} />}
+                            okFunc={this.actionConfigOKButtonClick} />
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="panel panel-dark" >
+                        {_data.rows.map(this.buildRows)}
+                        <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
+                    </div>
+                );
+            }
+
+
         }
 
     }

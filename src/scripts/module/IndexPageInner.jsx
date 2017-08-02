@@ -29,7 +29,6 @@ class IndexPageInnerBreadcrumb extends React.Component {
  */
 class IndexPageMain extends React.Component {
 
-
     render() {
         EventProxy.trigger(Global.Const.Event_DataLoading, 0);
         switch (this.props.moduleName) {
@@ -48,11 +47,6 @@ class IndexPageMain extends React.Component {
                     <ConfigPage />
                 )
             }
-            case Global.Const.Key_ModuleChange_User: {
-                return (
-                    <UserPage />
-                )
-            }
         }
 
 
@@ -69,17 +63,9 @@ class IndexPageInner extends React.Component {
 
     constructor(props) {
         super(props);
-
-
     }
 
     render() {
-        // <div className="page-title">
-        //         <div className="page-breadcrumb">
-        //             {/**导航**/}
-        //             <IndexPageInnerBreadcrumb moduleName={this.props.moduleName} />
-        //         </div>
-        //     </div>
         return (
             <div className="page-inner">
 

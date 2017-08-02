@@ -11,13 +11,13 @@ class LockScreenPage extends React.Component {
 
         //init
         this.requestLogin = this.requestLogin.bind(this);
-        this.userName = localStorage.getItem("user.name");
+        this.userName = Global.Status.UserName;
     }
 
     requestLogin() {
         this.buttonLogin.setAttribute("disabled", "disabled");
         let password = this.inputPassword.value;
-        let passwordLocal = localStorage.getItem('user.password');
+        let passwordLocal = Global.Status.UserPassword;
         if (passwordLocal == password) {
             EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_Index);
         } else {

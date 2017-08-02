@@ -34,12 +34,12 @@ const HttpRequest = {
         //ui显示loading 和错误toastr 
         this.axios.get('/server').then(function () {
             localStorage.setItem("server.url", url);
+            this.setCommonResponse();
             if (okFunc) {
                 okFunc();
             }
-            this.setCommonResponse(); 
             // Add a response interceptor 
-        }.bind(this)).catch(function (error) { 
+        }.bind(this)).catch(function (error) {
             this.errorHandle(error);
             if (errorFunc) {
                 errorFunc();
@@ -91,9 +91,10 @@ const HttpRequest = {
     axiosLoginRequestInterceptorId: 0,
 
     afterLogin: function (name, password, token) {
-        localStorage.setItem("user.name", name);
-        localStorage.setItem("user.password", password);
-        localStorage.setItem("user.token", token);
+        localStorage.setItem(Global.Const.LocalStorageKey_UserName, name);
+        Global.Status.UserName = name;
+        Global.Status.UserPassword = password;
+        Global.Status.UserLoginToken = token;
 
         // Add a request interceptor
         this.axiosLoginRequestInterceptorId = this.axios.interceptors.request.use(function (config) {
@@ -105,9 +106,10 @@ const HttpRequest = {
     },
 
     afterLogout: function () {
-        localStorage.removeItem("user.name");
-        localStorage.removeItem("user.password");
-        localStorage.removeItem("user.token");
+        localStorage.removeItem(Global.Const.LocalStorageKey_UserName);
+        Global.Status.UserName = undefined;
+        Global.Status.UserPassword = undefined;
+        Global.Status.UserLoginToken = undefined;
 
         // Add a request interceptor
         this.axios.interceptors.request.eject(this.axiosLoginRequestInterceptorId);

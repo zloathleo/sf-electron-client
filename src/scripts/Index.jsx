@@ -24,6 +24,18 @@ class IndexBody extends React.Component {
     }
 
     componentDidMount() {
+        //用户切换
+        EventProxy.on(Global.Const.Event_UserChange, (userName) => {
+            console.log('user:' + userName);
+            if (userName == Global.Const.Value_User_Guest) {
+                this.setState({ uiName: Global.Const.Key_UIChange_Index, moduleName: Global.Const.Key_ModuleChange_Dashboard });
+            } else if (userName == Global.Const.Value_User_Admin) {
+                this.setState({ uiName: Global.Const.Key_UIChange_AdminLogin });
+            } else if (userName == Global.Const.Value_User_Root) {
+                this.setState({ uiName: Global.Const.Key_UIChange_RootLogin });
+            }
+        });
+
         //login index 切换
         EventProxy.on(Global.Const.Event_UIChange, (key) => {
             if (key == Global.Const.Key_UIChange_AdminLogin || key == Global.Const.Key_UIChange_RootLogin) {
@@ -53,13 +65,14 @@ class IndexBody extends React.Component {
             this.setState({ uiName: Global.Const.Key_UIChange_GuestEnter });
         }.bind(this));
 
+        //未缓存url
         if (_initalize) {
-            // waitingDialog.hide();
             this.setState({ uiName: Global.Const.Key_UIChange_GuestEnter });
         }
     }
 
     componentWillUnmount() {
+        EventProxy.off(Global.Const.Event_UserChange);
         EventProxy.off(Global.Const.Event_UIChange);
         EventProxy.off(Global.Const.Event_ModuleChange);
         EventProxy.off(Global.Const.Event_DataLoading);
