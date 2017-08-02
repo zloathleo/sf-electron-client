@@ -99,11 +99,15 @@ class UserPageContent extends React.Component {
         let type = this.props.type;
         let userName = this.props.userName;
         if (type == "guest.enter") {
+            let serverUrl = localStorage.getItem('server.url');
+            if (!serverUrl) {
+                serverUrl = '';
+            }
             return (
                 <div>
                     <p className="text-center m-t-md">Enter server host.</p>
                     <div className="form-group">
-                        <input ref={(ref) => this.inputServerURL = ref} type="text" className="form-control" placeholder="Server Host" required />
+                        <input ref={(ref) => this.inputServerURL = ref} type="text" className="form-control" defaultValue={serverUrl} placeholder="Server Host" required />
                     </div>
                     <button ref={(ref) => this.buttonEnter = ref} className="btn btn-success btn-block" onClick={this.requestEnter}>Enter</button>
                     <p className="text-center m-t-xs text-sm">2017 &copy; RodinX by Safefire.</p>
@@ -116,7 +120,7 @@ class UserPageContent extends React.Component {
                     <div className="form-group">
                         <input ref={(ref) => this.inputPassword = ref} type="password" className="form-control" placeholder="Password" required />
                     </div>
-                    <button ref={(ref) => this.buttonLogin = ref} className="btn btn-success btn-block" onClick={this.requestLogin}>Authorize</button>
+                    <button ref={(ref) => this.buttonLogin = ref} className="btn btn-success btn-block" onClick={this.requestLogin}>Submit</button>
                     <p className="text-center m-t-xs text-sm">2017 &copy; RodinX by Safefire.</p>
                 </div>
             )

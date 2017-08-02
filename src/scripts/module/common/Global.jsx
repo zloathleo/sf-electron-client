@@ -32,7 +32,7 @@ const Global = {
         UserPassword: undefined,
         UserLoginToken: undefined,
 
-        RefreshThreadInterval: 1000,
+        RefreshThreadInterval: 1000 * 100,
     }
 
 }

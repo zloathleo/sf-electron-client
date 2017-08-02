@@ -4,7 +4,35 @@ import Global from './common/Global.jsx';
 import EventProxy from './common/EventProxy.jsx';
 import HttpRequest from './common/HttpRequest.jsx';
 
+import XModal from './commonui/XModal.jsx';
+
 class DropdownMenu extends React.Component {
+
+    constructor(props) {
+        super(props);
+        //init
+        this.actionGuestConfigServer = this.actionGuestConfigServer.bind(this);
+        this.actionAdminConfigServer = this.actionAdminConfigServer.bind(this);
+    }
+
+    actionGuestConfigServer() {
+        this.guestGuestConfigServerModal.openModal();
+    }
+
+    actionGuestConfigOKButtonClick() {
+        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_GuestEnter);
+    }
+
+    actionAdminConfigServer() {
+        this.adminConfigServerModal.openModal();
+    }
+
+    actionAdminConfigOKButtonClick() {
+        //先退出
+        HttpRequest.axios.patch('/users/' + Global.Status.UserName);
+        HttpRequest.afterLogout();
+        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_GuestEnter);
+    }
 
     //进入admin登录界面
     actionLoginAdminClick() {
@@ -17,11 +45,11 @@ class DropdownMenu extends React.Component {
     }
 
     //logout进入普通用户界面
-    actionLogoutClick() {  
+    actionLogoutClick() {
         HttpRequest.axios.patch('/users/' + Global.Status.UserName);
         HttpRequest.afterLogout();
         //logout 请求
-        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_AdminLogout); 
+        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_AdminLogout);
     }
 
     actionLockScreenClick() {
@@ -32,18 +60,30 @@ class DropdownMenu extends React.Component {
         let userName = this.props.userName;
         if (Global.Const.Value_User_Guest == userName) {
             return (
-                <ul className="dropdown-menu dropdown-list" role="menu">
-                    <li role="presentation"><a href="#" onClick={this.actionLoginRootClick}><i className="fa fa-lock"></i>Root</a></li>
-                    <li role="presentation"><a href="#" onClick={this.actionLoginAdminClick}><i className="fa fa-lock"></i>Configuration</a></li>
-                </ul>
+                <div>
+                    <XModal ref={(ref) => this.guestGuestConfigServerModal = ref}
+                        title="Are you sure you want to change server?"
+                        okFunc={this.actionGuestConfigOKButtonClick} />
+                    <ul className="dropdown-menu dropdown-list" role="menu">
+                        <li role="presentation"><a href="#" onClick={this.actionGuestConfigServer}><i className="fa fa-lock"></i>Change Server</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionLoginRootClick}><i className="fa fa-lock"></i>Root</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionLoginAdminClick}><i className="fa fa-lock"></i>Configuration</a></li>
+                    </ul>
+                </div>
             )
         } else {
             return (
-                <ul className="dropdown-menu dropdown-list" role="menu">
-                    <li role="presentation"><a href="#" onClick={this.actionLogoutClick}><i className="fa fa-lock"></i>Layout</a></li>
-                    <li role="presentation" className="divider"></li>
-                    <li role="presentation"><a href="#" onClick={this.actionLockScreenClick}><i className="fa fa-lock"></i>Lock screen</a></li>
-                </ul>
+                <div>
+                    <XModal ref={(ref) => this.adminConfigServerModal = ref}
+                        title="Are you sure you want to change server?"
+                        okFunc={this.actionAdminConfigOKButtonClick} />
+                    <ul className="dropdown-menu dropdown-list" role="menu">
+                        <li role="presentation"><a href="#" onClick={this.actionAdminConfigServer}><i className="fa fa-lock"></i>Change Server</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionLogoutClick}><i className="fa fa-lock"></i>Layout</a></li>
+                        <li role="presentation" className="divider"></li>
+                        <li role="presentation"><a href="#" onClick={this.actionLockScreenClick}><i className="fa fa-lock"></i>Lock screen</a></li>
+                    </ul>
+                </div>
             )
         }
 
@@ -51,7 +91,6 @@ class DropdownMenu extends React.Component {
 }
 
 class IndexNavBar extends React.Component {
-
 
     //退出程序
     actionExitClick() {
@@ -69,6 +108,7 @@ class IndexNavBar extends React.Component {
                 <div className="logo-box">
                     <a className="logo-text"><span>RodinX</span></a>
                 </div>
+
                 <div className="topmenu-outer">
                     <div className="top-menu">
 
