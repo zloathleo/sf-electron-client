@@ -10,9 +10,7 @@ import IndexSidebarMenu from './module/IndexSidebarMenu.jsx';
 import IndexPageInner from './module/IndexPageInner.jsx';
 
 import LoadingPage from './module/loading/LoadingPage.jsx';
-import LoginPage from './module/login/LoginPage.jsx';
-import GuestEnterPage from './module/login/GuestEnterPage.jsx';
-import LockScreenPage from './module/login/LockScreenPage.jsx';
+import UserSinglePage from './module/login/UserSinglePage.jsx';
 
 class IndexBody extends React.Component {
 
@@ -24,22 +22,12 @@ class IndexBody extends React.Component {
     }
 
     componentDidMount() {
-        //用户切换
-        EventProxy.on(Global.Const.Event_UserChange, (userName) => {
-            console.log('user:' + userName);
-            if (userName == Global.Const.Value_User_Guest) {
-                this.setState({ uiName: Global.Const.Key_UIChange_Index, moduleName: Global.Const.Key_ModuleChange_Dashboard });
-            } else if (userName == Global.Const.Value_User_Admin) {
-                this.setState({ uiName: Global.Const.Key_UIChange_AdminLogin });
-            } else if (userName == Global.Const.Value_User_Root) {
-                this.setState({ uiName: Global.Const.Key_UIChange_RootLogin });
-            }
-        });
-
         //login index 切换
         EventProxy.on(Global.Const.Event_UIChange, (key) => {
             if (key == Global.Const.Key_UIChange_AdminLogin || key == Global.Const.Key_UIChange_RootLogin) {
                 this.setState({ uiName: key, moduleName: Global.Const.Key_ModuleChange_Dashboard });
+            } else if (key == Global.Const.Key_UIChange_AdminLogout) {
+                this.setState({ uiName: Global.Const.Key_UIChange_Index, moduleName: Global.Const.Key_ModuleChange_Dashboard });
             } else {
                 this.setState({ uiName: key });
             }
@@ -72,7 +60,6 @@ class IndexBody extends React.Component {
     }
 
     componentWillUnmount() {
-        EventProxy.off(Global.Const.Event_UserChange);
         EventProxy.off(Global.Const.Event_UIChange);
         EventProxy.off(Global.Const.Event_ModuleChange);
         EventProxy.off(Global.Const.Event_DataLoading);
@@ -82,22 +69,6 @@ class IndexBody extends React.Component {
         if (this.state.uiName == Global.Const.Key_UIChange_Loading) {
             return (
                 <LoadingPage />
-            )
-        } else if (this.state.uiName == Global.Const.Key_UIChange_GuestEnter) {
-            return (
-                <GuestEnterPage />
-            )
-        } else if (this.state.uiName == Global.Const.Key_UIChange_AdminLogin) {
-            return (
-                <LoginPage userName={Global.Const.Value_User_Admin} />
-            )
-        } else if (this.state.uiName == Global.Const.Key_UIChange_RootLogin) {
-            return (
-                <LoginPage userName={Global.Const.Value_User_Root} />
-            )
-        } else if (this.state.uiName == Global.Const.Key_UIChange_Lock) {
-            return (
-                <LockScreenPage />
             )
         } else if (this.state.uiName == Global.Const.Key_UIChange_Index) {
             return (
@@ -115,6 +86,27 @@ class IndexBody extends React.Component {
                     <IndexPageInner moduleName={this.state.moduleName} />
                 </main>
             )
+        } else {
+            let requestUserName = undefined;
+            let userPageType = undefined;
+            if (this.state.uiName == Global.Const.Key_UIChange_GuestEnter) {
+                userPageType = 'guest.enter';
+            } else if (this.state.uiName == Global.Const.Key_UIChange_AdminLogin) {
+                userPageType = 'user.login';
+                requestUserName = Global.Const.Value_User_Admin;
+            } else if (this.state.uiName == Global.Const.Key_UIChange_RootLogin) {
+                userPageType = 'user.login';
+                requestUserName = Global.Const.Value_User_Root;
+            } else if (this.state.uiName == Global.Const.RootResetPassword) {
+                userPageType = 'root.resetpassword';
+            } else if (this.state.uiName == Global.Const.Key_UIChange_Lock) {
+                userPageType = 'screen.lock';
+                requestUserName = Global.Status.UserName;
+            }
+            return (
+                <UserSinglePage type={userPageType} userName={requestUserName} />
+            )
+
         }
     };
 }

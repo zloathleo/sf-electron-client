@@ -8,23 +8,20 @@ class DropdownMenu extends React.Component {
 
     //进入admin登录界面
     actionLoginAdminClick() {
-        EventProxy.trigger(Global.Const.Event_UserChange, Global.Const.Value_User_Admin);
+        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_AdminLogin);
     }
 
     //进入Root登录界面
     actionLoginRootClick() {
-        EventProxy.trigger(Global.Const.Event_UserChange, Global.Const.Value_User_Root);
+        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_RootLogin);
     }
 
-    //进入普通用户界面
-    actionLogoutClick() {
-        var params = new URLSearchParams();
-        params.append('user', 'guest');
-
+    //logout进入普通用户界面
+    actionLogoutClick() {  
         HttpRequest.axios.patch('/users/' + Global.Status.UserName);
         HttpRequest.afterLogout();
         //logout 请求
-        EventProxy.trigger(Global.Const.Event_UserChange, Global.Const.Value_User_Guest);
+        EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_AdminLogout); 
     }
 
     actionLockScreenClick() {
