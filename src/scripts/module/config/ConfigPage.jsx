@@ -20,7 +20,7 @@ class ConfigPage extends React.Component {
     }
 
     onRequestInitDatasLoaded() {
-        EventProxy.trigger(Global.Const.Event_DataLoading, 1);
+        EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Finish);
     }
 
     render() {

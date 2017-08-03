@@ -10,7 +10,7 @@ import {
     ModalFooter
 } from 'react-modal-bootstrap';
 
-class XModal extends React.Component {
+class XModalConfirm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -35,16 +35,15 @@ class XModal extends React.Component {
     };
 
     ok() {
-        if (this.props.okFunc) {
-            this.props.okFunc();
+        if (this.okFunc) {
+            this.okFunc();
         }
         this.hideModal();
     }
 
     render() {
         if (this.state.isOpen) {
-            let title = this.props.title ? this.props.title : 'Title';
-            let okText = this.props.okText ? this.props.okText : 'OK';
+            let title = this.title ? this.title : 'Confirm';
 
             return (
                 <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal}>
@@ -52,15 +51,12 @@ class XModal extends React.Component {
                         <ModalClose onClick={this.hideModal} />
                         <ModalTitle>{title}</ModalTitle>
                     </ModalHeader>
-                    <ModalBody>
-                        {this.props.body}
-                    </ModalBody>
                     <ModalFooter>
                         <button className='btn btn-default' onClick={this.hideModal}>
                             Close
-                    </button>
+                        </button>
                         <button className='btn btn-success' onClick={this.ok}>
-                            {okText}
+                            Confirm
                         </button>
                     </ModalFooter>
                 </Modal>
@@ -72,11 +68,4 @@ class XModal extends React.Component {
     }
 }
 
-XModal.PropsType = {
-    title: PropTypes.string,
-    body: PropTypes.any,
-    okText: PropTypes.string,
-    okFunc: PropTypes.func
-}
-
-export default XModal;
+export default XModalConfirm;

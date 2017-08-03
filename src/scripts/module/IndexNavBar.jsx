@@ -4,7 +4,10 @@ import Global from './common/Global.jsx';
 import EventProxy from './common/EventProxy.jsx';
 import HttpRequest from './common/HttpRequest.jsx';
 
-import XModal from './commonui/XModal.jsx';
+
+window.IPC_Callback_RootLogin = function () {
+    EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_RootLogin);
+}
 
 class DropdownMenu extends React.Component {
 
@@ -16,7 +19,10 @@ class DropdownMenu extends React.Component {
     }
 
     actionGuestConfigServer() {
-        this.guestGuestConfigServerModal.openModal();
+        EventProxy.trigger(Global.Const.Event_ConfirmModal, {
+            title: 'Are you sure you want to change server?',
+            okFunc: this.actionGuestConfigOKButtonClick
+        });
     }
 
     actionGuestConfigOKButtonClick() {
@@ -24,7 +30,11 @@ class DropdownMenu extends React.Component {
     }
 
     actionAdminConfigServer() {
-        this.adminConfigServerModal.openModal();
+        EventProxy.trigger(Global.Const.Event_ConfirmModal, {
+            title: 'Are you sure you want to change server?',
+            okFunc: this.actionAdminConfigOKButtonClick
+        });
+
     }
 
     actionAdminConfigOKButtonClick() {
@@ -61,25 +71,18 @@ class DropdownMenu extends React.Component {
         if (Global.Const.Value_User_Guest == userName) {
             return (
                 <div>
-                    <XModal ref={(ref) => this.guestGuestConfigServerModal = ref}
-                        title="Are you sure you want to change server?"
-                        okFunc={this.actionGuestConfigOKButtonClick} />
                     <ul className="dropdown-menu dropdown-list" role="menu">
-                        <li role="presentation"><a href="#" onClick={this.actionGuestConfigServer}><i className="fa fa-lock"></i>Change Server</a></li>
-                        <li role="presentation"><a href="#" onClick={this.actionLoginRootClick}><i className="fa fa-lock"></i>Root</a></li>
-                        <li role="presentation"><a href="#" onClick={this.actionLoginAdminClick}><i className="fa fa-lock"></i>Configuration</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionGuestConfigServer}><i className="fa fa-cog"></i>Change Server</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionLoginAdminClick}><i className="fa fa-cogs"></i>Configuration</a></li>
                     </ul>
                 </div>
             )
         } else {
             return (
                 <div>
-                    <XModal ref={(ref) => this.adminConfigServerModal = ref}
-                        title="Are you sure you want to change server?"
-                        okFunc={this.actionAdminConfigOKButtonClick} />
                     <ul className="dropdown-menu dropdown-list" role="menu">
-                        <li role="presentation"><a href="#" onClick={this.actionAdminConfigServer}><i className="fa fa-lock"></i>Change Server</a></li>
-                        <li role="presentation"><a href="#" onClick={this.actionLogoutClick}><i className="fa fa-lock"></i>Layout</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionAdminConfigServer}><i className="fa fa-cog"></i>Change Server</a></li>
+                        <li role="presentation"><a href="#" onClick={this.actionLogoutClick}><i className="fa fa-sign-out m-r-xs"></i>Layout</a></li>
                         <li role="presentation" className="divider"></li>
                         <li role="presentation"><a href="#" onClick={this.actionLockScreenClick}><i className="fa fa-lock"></i>Lock screen</a></li>
                     </ul>
@@ -94,8 +97,14 @@ class IndexNavBar extends React.Component {
 
     //退出程序
     actionExitClick() {
-        console.log('client-ipc-menu-close');
-        // ipcRenderer.send('client-ipc-menu-close', 'close');
+        HttpRequest.axios.patch('/users/' + Global.Status.UserName).then(function () {
+            HttpRequest.afterLogout();
+            IPC_CloseApp(Global.Status.UserName);
+        }).catch(function () {
+            HttpRequest.afterLogout();
+            IPC_CloseApp(Global.Status.UserName);
+        });
+
     }
 
     render() {

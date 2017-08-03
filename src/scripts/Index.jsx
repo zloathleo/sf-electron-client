@@ -5,6 +5,8 @@ import Global from './module/common/Global.jsx'
 import EventProxy from './module/common/EventProxy.jsx'
 import HttpRequest from './module/common/HttpRequest.jsx';
 
+import XModalConfirm from './module/commonui/XModalConfirm.jsx';
+
 import IndexNavBar from './module/IndexNavBar.jsx';
 import IndexSidebarMenu from './module/IndexSidebarMenu.jsx';
 import IndexPageInner from './module/IndexPageInner.jsx';
@@ -18,6 +20,8 @@ class IndexBody extends React.Component {
         super(props);
         this.state = { uiName: Global.Const.Key_UIChange_Loading, moduleName: Global.Const.Key_ModuleChange_Dashboard };
 
+        //全局确认diaolog
+        this.globalConfirmModal = undefined;
         toastr.options.positionClass = "toast-bottom-center";
     }
 
@@ -40,12 +44,21 @@ class IndexBody extends React.Component {
 
         //数据加载
         EventProxy.on(Global.Const.Event_DataLoading, (_state) => {
-            if (_state == 0) {
+            if (_state == Global.Const.Key_DataLoading_Doing) {
                 waitingDialog.show('Loading ...');
             } else {
                 waitingDialog.hide();
             }
         });
+
+        //数据加载
+        EventProxy.on(Global.Const.Event_ConfirmModal, (_params) => { 
+            this.globalConfirmModal.title = _params.title;
+            this.globalConfirmModal.okFunc = _params.okFunc;
+            this.globalConfirmModal.openModal();
+        });
+
+
 
         let _initalize = HttpRequest.init(function () {
             this.setState({ uiName: Global.Const.Key_UIChange_Index });
@@ -83,6 +96,10 @@ class IndexBody extends React.Component {
                             <IndexSidebarMenu moduleName={this.state.moduleName} />
                         </div>
                     </div>
+
+                    {/**全局确认对话框**/}
+                    <XModalConfirm ref={(ref) => this.globalConfirmModal = ref} title="Confirm" />
+
                     <IndexPageInner moduleName={this.state.moduleName} />
                 </main>
             )

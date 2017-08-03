@@ -11,6 +11,9 @@
     <meta name="keywords" content="Index" />
 
     <script>
+        console.log('process.versions.node:' + process.versions.node); 
+        require('../scripts/renderer.js')
+
         window.nodeRequire = require;
         delete window.require;
         delete window.exports;
@@ -23,7 +26,7 @@
     <!-- <link href="../assets/plugins/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
     <link href="../assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="../assets/plugins/toastr/toastr.css" rel="stylesheet" type="text/css" />
- 
+
     <!-- Theme Styles -->
     <link href="../assets/css/modern.css" rel="stylesheet" type="text/css" />
     <link href="../assets/css/theme.css" rel="stylesheet" type="text/css" />
@@ -46,8 +49,7 @@
     <script src="../assets/plugins/bootstrap/plugins/bootstrap-waitingfor.js"></script>
     <script src="../assets/plugins/toastr/toastr.min.js"></script>
 
-    <script src="../scripts/index.js"></script>
-
+    <script src="../scripts/index.js"></script> 
 </body>
 
 </html>

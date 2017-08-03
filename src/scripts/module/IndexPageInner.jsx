@@ -30,7 +30,7 @@ class IndexPageInnerBreadcrumb extends React.Component {
 class IndexPageMain extends React.Component {
 
     render() {
-        EventProxy.trigger(Global.Const.Event_DataLoading, 0);
+        EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Doing);
         switch (this.props.moduleName) {
             case Global.Const.Key_ModuleChange_Dashboard: {
                 return (

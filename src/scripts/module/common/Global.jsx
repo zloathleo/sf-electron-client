@@ -5,6 +5,8 @@ const Global = {
         Event_ModuleChange: "moduleChange",
         Event_DashboardChange: "dashboardChange",
 
+        Event_ConfirmModal: "ConfirmModal",
+
         Key_DataLoading_Finish: "Finish",
         Key_DataLoading_Doing: "Doing",
 

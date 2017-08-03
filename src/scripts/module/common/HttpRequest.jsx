@@ -49,10 +49,10 @@ const HttpRequest = {
 
     setCommonResponse: function () {
         this.axios.interceptors.response.use(function (response) {
-            EventProxy.trigger(Global.Const.Event_DataLoading, 1);
+            EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Finish);
             return response;
         }, function (error) {
-            EventProxy.trigger(Global.Const.Event_DataLoading, 1);
+            EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Finish);
             return this.errorHandle(error);
         }.bind(this));
 

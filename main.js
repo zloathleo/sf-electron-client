@@ -95,7 +95,7 @@ function _showMainWindow() {
 
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools();
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();
@@ -112,6 +112,10 @@ function _showMainWindow() {
 
 //初始化快捷键
 function initShortcut() {
+    //root登录
+    globalShortcut.register('Ctrl+F10', function () {
+        mainWindow.webContents.send('main-ipc-root-login', 'root');
+    })
     globalShortcut.register('Ctrl+F11', function () {
         mainWindow.setFullScreen(!mainWindow.isFullScreen());
     })
