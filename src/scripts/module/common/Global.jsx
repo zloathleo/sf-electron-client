@@ -34,7 +34,8 @@ const Global = {
         UserPassword: undefined,
         UserLoginToken: undefined,
 
-        RefreshThreadInterval: 1000 * 100,
+        RefreshThreadInterval: 1000 * 1,
+        RefreshThreadIntervalFault: 1000 * 5,
     }
 
 }

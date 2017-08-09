@@ -13,6 +13,23 @@ import Detail from './Detail.jsx';
 
 
 //config 对话框
+class AddressConfigPanel extends React.Component {
+
+    render() {
+        return (
+            <ul className="list-unstyled weather-info">
+                <li><span className="field-name">Addr</span><span className="pull-right field-value-component">
+                    <input ref={(ref) => this.baudRateInput = ref} type="number" defaultValue={1} />
+                </span></li>
+                <li><span className="field-name">Boad Rate</span><span className="pull-right field-value-component">
+                    <input ref={(ref) => this.baudRateInput = ref} type="number" defaultValue={2} />
+                </span></li>
+            </ul>
+        )
+    };
+
+}
+
 class DashboardConfigPanel extends React.Component {
 
     constructor(props) {
@@ -53,8 +70,7 @@ class DashboardLayout extends React.Component {
 
         //是否已经Mount
         this.isSelfMount = true;
-        //实时请求失败次数
-        this.refreshStatusFaultCount = 0;
+
 
         //init 
         this.onRequestInitDatasLoaded = this.onRequestInitDatasLoaded.bind(this);
@@ -67,6 +83,9 @@ class DashboardLayout extends React.Component {
         this.actionConfigOKButtonClick = this.actionConfigOKButtonClick.bind(this);
 
         //refresh
+        //实时请求失败次数
+        this.refreshStatusFaultCount = 0;
+        //refresh回调
         this.refreshStatusInterval = undefined;
         this.refreshStatus = this.refreshStatus.bind(this);
         this.onRefreshStatusLoaded = this.onRefreshStatusLoaded.bind(this);
@@ -103,13 +122,11 @@ class DashboardLayout extends React.Component {
         HttpRequest.axios.get('/dashboard/status').then(this.onRefreshStatusLoaded).catch(function (error) {
             this.refreshStatusFaultCount++;
             if (this.refreshStatusFaultCount >= 5) {
-                this.refreshStatusInterval = setTimeout(this.refreshStatus, 1000 * 10);
+                this.refreshStatusInterval = setTimeout(this.refreshStatus, Global.Status.RefreshThreadIntervalFault);
             } else {
                 this.refreshStatusInterval = setTimeout(this.refreshStatus, Global.Status.RefreshThreadInterval);
             }
         }.bind(this));
-
-
     }
     onRefreshStatusLoaded(response) {
         this.refreshStatusFaultCount = 0;
@@ -126,6 +143,9 @@ class DashboardLayout extends React.Component {
     actionContextMenuItemClick(_key, selectItemName) {
         if ('detail' == _key) {
             EventProxy.trigger(Global.Const.Event_DashboardChange, { 'index': 2, 'selectItemName': selectItemName });
+        } else if ('config' == _key) {
+            console.log('config selectItemName:' + selectItemName);
+            this.addressConfigModal.openModal();
         }
     }
     //菜单放大器详情
@@ -299,6 +319,11 @@ class DashboardLayout extends React.Component {
                             title="Dashboard Settings"
                             body={<DashboardConfigPanel ref={(ref) => this.dashboardConfigBody = ref} overviewData={_data} />}
                             okFunc={this.actionConfigOKButtonClick} />
+
+                        <XModal ref={(ref) => this.addressConfigModal = ref}
+                            title="Address Settings"
+                            body={<AddressConfigPanel ref={(ref) => this.addressConfigPanelBody = ref} addressData={_data} />}
+                            okFunc={this.actionAddressConfigOkButtonClick} />
                     </div>
                 );
             } else {
@@ -306,6 +331,10 @@ class DashboardLayout extends React.Component {
                     <div className="panel panel-dark" >
                         {_data.rows.map(this.buildRows)}
                         <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
+                        <XModal ref={(ref) => this.addressConfigModal = ref}
+                            title="Address Settings"
+                            body={<AddressConfigPanel ref={(ref) => this.addressConfigPanelBody = ref} addressData={_data} />}
+                            okFunc={this.actionAddressConfigOkButtonClick} />
                     </div>
                 );
             }

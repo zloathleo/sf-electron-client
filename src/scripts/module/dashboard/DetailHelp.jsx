@@ -15,6 +15,8 @@ class DetailHelp extends React.Component {
         this.detailSystemSettingsPanel = undefined;
         this.factorySettingModalRender = this.factorySettingModalRender.bind(this);
         this.onSystemSettingDatasLoaded = this.onSystemSettingDatasLoaded.bind(this);
+
+        this.renderFactorySettingButton = this.renderFactorySettingButton.bind(this);
     }
 
     handleSwitch(elem, state) {
@@ -38,6 +40,19 @@ class DetailHelp extends React.Component {
         return (
             <DetailSystemSettingsPanel ref={(ref) => this.detailSystemSettingsPanel = ref} />
         );
+    }
+
+    renderFactorySettingButton() {
+        const data = this.props.data;
+        if (data.ch1.enable != undefined || data.ch1.enable != undefined) {
+            return (
+                <button type="button" className="btn btn-primary" data-toggle="modal"
+                    data-target="#factoryConfigModal"
+                    onClick={this.actionFactorySettingClick.bind(this)}>Factory Settings</button>
+            )
+        } else {
+            return null;
+        }
     }
 
     render() {
@@ -70,7 +85,9 @@ class DetailHelp extends React.Component {
                                         <li><span className="field-name">ON_TH</span><span className="pull-right">ON Threshold in High</span></li>
                                         <li><span className="field-name"></span><span className="pull-right field-value-component"><Choice selectIndex={0} labels={['F', 'C']} /></span></li>
                                         <li><span className="field-name"></span><span className="pull-right field-value-component">
-                                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#factoryConfigModal" onClick={this.actionFactorySettingClick.bind(this)}>Factory Settings</button>
+                                            {
+                                                this.renderFactorySettingButton()
+                                            }
                                         </span></li>
                                     </ul>
                                 </div>

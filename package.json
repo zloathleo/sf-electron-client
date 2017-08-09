@@ -34,7 +34,6 @@
     "webpack-dev-server": "^2.4.1"
   },
   "author": "leo zhong",
-  "dependencies": {
-    "jquery": "^3.2.1"
+  "dependencies": { 
   }
 }
