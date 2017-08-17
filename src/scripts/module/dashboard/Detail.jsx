@@ -69,7 +69,6 @@ class DetailCard extends React.Component {
                         {
                             this.renderUserSettingButton()
                         }
-
                     </div>
                     <div className="panel-body">
 
@@ -99,8 +98,7 @@ class DetailCard extends React.Component {
                                     <li><span className="pull-right">  </span></li>
                                 </ul>
                             </div>
-                        </div>
-
+                        </div> 
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import Global from './common/Global.jsx';
 import EventProxy from './common/EventProxy.jsx';
 import HttpRequest from './common/HttpRequest.jsx';
 
-
+//renderer.js
 window.IPC_Callback_RootLogin = function () {
     EventProxy.trigger(Global.Const.Event_UIChange, Global.Const.Key_UIChange_RootLogin);
 }

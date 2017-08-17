@@ -71,7 +71,6 @@ class DashboardLayout extends React.Component {
         //是否已经Mount
         this.isSelfMount = true;
 
-
         //init 
         this.onRequestInitDatasLoaded = this.onRequestInitDatasLoaded.bind(this);
 
@@ -113,7 +112,6 @@ class DashboardLayout extends React.Component {
         this.setState({ uiUpdate: (this.state.uiUpdate++) });
         //请求状态
         this.refreshStatus();
-
     }
     //初始化dashboard数据
 
@@ -338,10 +336,7 @@ class DashboardLayout extends React.Component {
                     </div>
                 );
             }
-
-
         }
-
     }
 
 }

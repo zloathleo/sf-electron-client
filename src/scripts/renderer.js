@@ -7,6 +7,7 @@ window.IPC_CloseApp = function (message) {
     ipcRenderer.send('client-ipc-menu-close', message);
 }
 
+//快捷键Root 登录
 ipcRenderer.on('main-ipc-root-login', function (event, message) {
     console.log(message);
     window.IPC_Callback_RootLogin();
