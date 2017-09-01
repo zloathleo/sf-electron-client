@@ -58,8 +58,6 @@ class IndexBody extends React.Component {
             this.globalConfirmModal.openModal();
         });
 
-
-
         let _initalize = HttpRequest.init(function () {
             this.setState({ uiName: Global.Const.Key_UIChange_Index });
         }.bind(this), function () {
