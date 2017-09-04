@@ -1,12 +1,10 @@
 import React from 'react';
 
 import HttpRequest from '../common/HttpRequest.jsx';
-
+import Global from '../common/Global.jsx'
 import Choice from '../commonui/Choice.jsx'
 
 import DetailSystemSettingsPanel from './DetailSystemSettingsPanel.jsx'
-
-
 //详情的注释
 class DetailHelp extends React.Component {
 
@@ -43,16 +41,20 @@ class DetailHelp extends React.Component {
     }
 
     renderFactorySettingButton() {
-        const data = this.props.data;
-        if (data.ch1.enable != undefined || data.ch1.enable != undefined) {
-            return (
-                <button type="button" className="btn btn-primary" data-toggle="modal"
-                    data-target="#factoryConfigModal"
-                    onClick={this.actionFactorySettingClick.bind(this)}>Factory Settings</button>
-            )
+        if (Global.Status.UserName) {
+            const data = this.props.data;
+            if (data.ch1.enable != undefined || data.ch1.enable != undefined) {
+                return (
+                    <button type="button" className="btn btn-primary" data-toggle="modal"
+                        data-target="#factoryConfigModal"
+                        onClick={this.actionFactorySettingClick.bind(this)}>Factory Settings</button>
+                )
+            } else {
+                return null;
+            }
         } else {
             return null;
-        }
+        } 
     }
 
     render() {

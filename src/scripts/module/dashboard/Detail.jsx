@@ -40,15 +40,19 @@ class DetailCard extends React.Component {
     //usersettings
 
     renderUserSettingButton() {
-        let ch = this.props.ch;
-        if (ch.enable != undefined) {
-            return (
-                <div className="panel-control">
-                    <a className="cursor-pointer" onClick={this.actionUserSettingClick.bind(this, 123)} >
-                        <i className="fa fa-cog"></i>
-                    </a>
-                </div>
-            )
+        if (Global.Status.UserName) {
+            let ch = this.props.ch;
+            if (ch.enable != undefined) {
+                return (
+                    <div className="panel-control">
+                        <a className="cursor-pointer" onClick={this.actionUserSettingClick.bind(this, 123)} >
+                            <i className="fa fa-cog"></i>
+                        </a>
+                    </div>
+                )
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -98,7 +102,7 @@ class DetailCard extends React.Component {
                                     <li><span className="pull-right">  </span></li>
                                 </ul>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>

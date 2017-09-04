@@ -35,6 +35,11 @@ const HttpRequest = {
         this.axios.get('/server').then(function () {
             localStorage.setItem("server.url", url);
             this.setCommonResponse();
+
+            Global.Status.UserName = Global.Const.LocalStorageKey_UserName;
+            Global.Status.UserPassword = localStorage.getItem('user.password');
+            Global.Status.UserLoginToken = localStorage.getItem('user.token');
+
             if (okFunc) {
                 okFunc();
             }
@@ -55,7 +60,6 @@ const HttpRequest = {
             EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Finish);
             return this.errorHandle(error);
         }.bind(this));
-
     },
 
     errorHandle: function (error) {
@@ -92,6 +96,10 @@ const HttpRequest = {
 
     afterLogin: function (name, password, token) {
         localStorage.setItem(Global.Const.LocalStorageKey_UserName, name);
+        //
+        localStorage.setItem('user.password', password);
+        localStorage.setItem('user.token', token);
+
         Global.Status.UserName = name;
         Global.Status.UserPassword = password;
         Global.Status.UserLoginToken = token;
@@ -107,6 +115,10 @@ const HttpRequest = {
 
     afterLogout: function () {
         localStorage.removeItem(Global.Const.LocalStorageKey_UserName);
+        //
+        localStorage.removeItem('user.password');
+        localStorage.removeItem('user.token');
+
         Global.Status.UserName = undefined;
         Global.Status.UserPassword = undefined;
         Global.Status.UserLoginToken = undefined;

@@ -16,13 +16,18 @@ import Detail from './Detail.jsx';
 class AddressConfigPanel extends React.Component {
 
     render() {
+        let _data = this.props.addressData;
+        console.log('selectItemName:' + this.selectItemName);
         return (
             <ul className="list-unstyled weather-info">
                 <li><span className="field-name">Addr</span><span className="pull-right field-value-component">
-                    <input ref={(ref) => this.baudRateInput = ref} type="number" defaultValue={1} />
+                    <input ref={(ref) => this.addrInput = ref} type="number" defaultValue={1} />
                 </span></li>
-                <li><span className="field-name">Boad Rate</span><span className="pull-right field-value-component">
-                    <input ref={(ref) => this.baudRateInput = ref} type="number" defaultValue={2} />
+                <li><span className="field-name">CH1 Description</span><span className="pull-right field-value-component">
+                    <input ref={(ref) => this.ch1DescInput = ref} type="string" defaultValue={2} />
+                </span></li>
+                <li><span className="field-name">CH2 Description</span><span className="pull-right field-value-component">
+                    <input ref={(ref) => this.ch2DescInput = ref} type="string" defaultValue={2} />
                 </span></li>
             </ul>
         )
@@ -95,6 +100,9 @@ class DashboardLayout extends React.Component {
         this.actionConfigButtonClick = this.actionConfigButtonClick.bind(this);
         this.actionAddRowButtonClick = this.actionAddRowButtonClick.bind(this);
         this.actionDeleteLastRowButtonClick = this.actionDeleteLastRowButtonClick.bind(this);
+
+        //
+        this.addressConfigPanelBody = undefined;
     }
 
 
@@ -142,7 +150,11 @@ class DashboardLayout extends React.Component {
         if ('detail' == _key) {
             EventProxy.trigger(Global.Const.Event_DashboardChange, { 'index': 2, 'selectItemName': selectItemName });
         } else if ('config' == _key) {
-            console.log('config selectItemName:' + selectItemName);
+            let _panel = this.addressConfigModal.props.body;
+            // _panel.selectItemName = selectItemName;
+            console.log('this._panel:' + _panel.addressConfigPanelBody);
+            console.log('this._panel:' + _panel.addressConfigPanelBody);
+            this.addressConfigModal.selectItemName = selectItemName;
             this.addressConfigModal.openModal();
         }
     }
@@ -315,24 +327,21 @@ class DashboardLayout extends React.Component {
                         <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
                         <XModal ref={(ref) => this.dashboardConfigModal = ref}
                             title="Dashboard Settings"
-                            body={<DashboardConfigPanel ref={(ref) => this.dashboardConfigBody = ref} overviewData={_data} />}
+                            body={<DashboardConfigPanel ref={(dcp) => this.dashboardConfigBody = dcp} overviewData={_data} />}
                             okFunc={this.actionConfigOKButtonClick} />
 
                         <XModal ref={(ref) => this.addressConfigModal = ref}
                             title="Address Settings"
-                            body={<AddressConfigPanel ref={(ref) => this.addressConfigPanelBody = ref} addressData={_data} />}
+                            body={<AddressConfigPanel ref={(acp) => { this.addressConfigPanelBody = acp; }} addressData={_data} />}
                             okFunc={this.actionAddressConfigOkButtonClick} />
                     </div>
                 );
             } else {
+                //guest 用户
                 return (
                     <div className="panel panel-dark" >
                         {_data.rows.map(this.buildRows)}
                         <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
-                        <XModal ref={(ref) => this.addressConfigModal = ref}
-                            title="Address Settings"
-                            body={<AddressConfigPanel ref={(ref) => this.addressConfigPanelBody = ref} addressData={_data} />}
-                            okFunc={this.actionAddressConfigOkButtonClick} />
                     </div>
                 );
             }

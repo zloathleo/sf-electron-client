@@ -64,7 +64,7 @@ class IndexBody extends React.Component {
             this.setState({ uiName: Global.Const.Key_UIChange_GuestEnter });
         }.bind(this));
 
-        //未缓存url
+        //未缓存服务器url
         if (_initalize) {
             this.setState({ uiName: Global.Const.Key_UIChange_GuestEnter });
         }

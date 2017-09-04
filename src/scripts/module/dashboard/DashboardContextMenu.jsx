@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Global from '../common/Global.jsx'
+
 class DashboardContextMenu extends React.Component {
 
     constructor(props) {
@@ -110,11 +112,19 @@ class DashboardContextMenu extends React.Component {
     render() {
         const { visible } = this.state;
 
-        return (visible || null) &&
-            <div ref={ref => { this.root = ref }} className="contextMenu">
-                <div className="contextMenu--option" data-key="detail"><i className="fa fa-thermometer-quarter context-menu-icon-detail"></i>Detail</div>
-                <div className="contextMenu--option" data-key="config"><i className="fa fa-cog context-menu-icon"></i>Config Item</div>
-            </div>
+        if (Global.Status.UserName) {
+            return (visible || null) &&
+                <div ref={ref => { this.root = ref }} className="contextMenu">
+                    <div className="contextMenu--option" data-key="detail"><i className="fa fa-thermometer-quarter context-menu-icon-detail"></i>Detail</div>
+                    <div className="contextMenu--option" data-key="config"><i className="fa fa-cog context-menu-icon"></i>Config Item</div>
+                </div>
+        } else {
+            return (visible || null) &&
+                <div ref={ref => { this.root = ref }} className="contextMenu">
+                    <div className="contextMenu--option" data-key="detail"><i className="fa fa-thermometer-quarter context-menu-icon-detail"></i>Detail</div>
+                </div>
+        }
+
     };
 }
 
