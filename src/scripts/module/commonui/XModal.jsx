@@ -53,7 +53,7 @@ class XModal extends React.Component {
                         <ModalTitle>{title}</ModalTitle>
                     </ModalHeader>
                     <ModalBody>
-                        {this.props.body}
+                        {this.props.children}
                     </ModalBody>
                     <ModalFooter>
                         <button className='btn btn-default' onClick={this.hideModal}>
@@ -74,7 +74,6 @@ class XModal extends React.Component {
 
 XModal.PropsType = {
     title: PropTypes.string,
-    body: PropTypes.any,
     okText: PropTypes.string,
     okFunc: PropTypes.func
 }

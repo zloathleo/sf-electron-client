@@ -36,7 +36,7 @@ const HttpRequest = {
             localStorage.setItem("server.url", url);
             this.setCommonResponse();
 
-            Global.Status.UserName = Global.Const.LocalStorageKey_UserName;
+            Global.Status.UserName = localStorage.getItem(Global.Const.LocalStorageKey_UserName);
             Global.Status.UserPassword = localStorage.getItem('user.password');
             Global.Status.UserLoginToken = localStorage.getItem('user.token');
 

@@ -15,19 +15,47 @@ import Detail from './Detail.jsx';
 //config 对话框
 class AddressConfigPanel extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.parseInput = this.parseInput.bind(this);
+    }
+
+    parseInput() {
+        let _selectedItemName = Global.Status.EventVar_Modal_ClickItemName;
+        return {
+            'ampName': _selectedItemName,
+            'addr': this.addrInput.value,
+            'desc1': this.ch1DescInput.value,
+            'desc2': this.ch2DescInput.value
+        }
+    }
+
     render() {
         let _data = this.props.addressData;
-        console.log('selectItemName:' + this.selectItemName);
+        let _selectedItemName = Global.Status.EventVar_Modal_ClickItemName;
+
+        let _selectedItem = undefined;
+        for (let i = 0; i < _data.rows.length; i++) {
+            let row = _data.rows[i];
+
+            for (let j = 0; j < row.items.length; j++) {
+                let item = row.items[j];
+                if (item.name == _selectedItemName) {
+                    _selectedItem = item;
+                }
+            }
+        }
+
         return (
             <ul className="list-unstyled weather-info">
                 <li><span className="field-name">Addr</span><span className="pull-right field-value-component">
-                    <input ref={(ref) => this.addrInput = ref} type="number" defaultValue={1} />
+                    <input ref={(ref) => this.addrInput = ref} type="number" defaultValue={_selectedItem.addr} />
                 </span></li>
                 <li><span className="field-name">CH1 Description</span><span className="pull-right field-value-component">
-                    <input ref={(ref) => this.ch1DescInput = ref} type="string" defaultValue={2} />
+                    <input ref={(ref) => this.ch1DescInput = ref} type="string" defaultValue={_selectedItem.chs[0].desc} />
                 </span></li>
                 <li><span className="field-name">CH2 Description</span><span className="pull-right field-value-component">
-                    <input ref={(ref) => this.ch2DescInput = ref} type="string" defaultValue={2} />
+                    <input ref={(ref) => this.ch2DescInput = ref} type="string" defaultValue={_selectedItem.chs[1].desc} />
                 </span></li>
             </ul>
         )
@@ -85,6 +113,7 @@ class DashboardLayout extends React.Component {
         this.buildItems = this.buildItems.bind(this);
 
         this.actionConfigOKButtonClick = this.actionConfigOKButtonClick.bind(this);
+        this.actionAddressConfigOkButtonClick = this.actionAddressConfigOkButtonClick.bind(this);
 
         //refresh
         //实时请求失败次数
@@ -101,8 +130,6 @@ class DashboardLayout extends React.Component {
         this.actionAddRowButtonClick = this.actionAddRowButtonClick.bind(this);
         this.actionDeleteLastRowButtonClick = this.actionDeleteLastRowButtonClick.bind(this);
 
-        //
-        this.addressConfigPanelBody = undefined;
     }
 
 
@@ -110,6 +137,8 @@ class DashboardLayout extends React.Component {
     componentDidMount() {
         this.isSelfMount = true;
         HttpRequest.axios.get('/dashboard').then(this.onRequestInitDatasLoaded);
+        //请求状态
+        this.refreshStatus();
     }
     componentWillUnmount() {
         this.isSelfMount = false;
@@ -118,9 +147,8 @@ class DashboardLayout extends React.Component {
     onRequestInitDatasLoaded(response) {
         this.overviewData = response.data;
         this.setState({ uiUpdate: (this.state.uiUpdate++) });
-        //请求状态
-        this.refreshStatus();
     }
+
     //初始化dashboard数据
 
     //刷新实时
@@ -150,11 +178,7 @@ class DashboardLayout extends React.Component {
         if ('detail' == _key) {
             EventProxy.trigger(Global.Const.Event_DashboardChange, { 'index': 2, 'selectItemName': selectItemName });
         } else if ('config' == _key) {
-            let _panel = this.addressConfigModal.props.body;
-            // _panel.selectItemName = selectItemName;
-            console.log('this._panel:' + _panel.addressConfigPanelBody);
-            console.log('this._panel:' + _panel.addressConfigPanelBody);
-            this.addressConfigModal.selectItemName = selectItemName;
+            Global.Status.EventVar_Modal_ClickItemName = selectItemName;
             this.addressConfigModal.openModal();
         }
     }
@@ -179,6 +203,22 @@ class DashboardLayout extends React.Component {
     actionConfigOKButtonClick() {
         this.dashboardConfigBody.actionConfigOKButtonClick();
         this.actionSaveButtonClick();
+    }
+
+    //修改硬件地址
+    actionAddressConfigOkButtonClick() {
+        let _inputs = this.addressConfigPanelBody.parseInput();
+        console.log(_inputs);
+
+        var params = new URLSearchParams();
+        params.append('addr', _inputs.addr);
+        params.append('d1', _inputs.desc1);
+        params.append('d2', _inputs.desc2);
+
+        HttpRequest.axios.patch('/dashboard/' + _inputs.ampName, params).then(function (response) {
+            console.log(response);
+            HttpRequest.axios.get('/dashboard').then(this.onRequestInitDatasLoaded);
+        }.bind(this));
     }
 
     //添加行
@@ -327,13 +367,15 @@ class DashboardLayout extends React.Component {
                         <OverviewContextMenu onItemClick={this.actionContextMenuItemClick} />
                         <XModal ref={(ref) => this.dashboardConfigModal = ref}
                             title="Dashboard Settings"
-                            body={<DashboardConfigPanel ref={(dcp) => this.dashboardConfigBody = dcp} overviewData={_data} />}
-                            okFunc={this.actionConfigOKButtonClick} />
+                            okFunc={this.actionConfigOKButtonClick} >
+                            <DashboardConfigPanel ref={(dcp) => this.dashboardConfigBody = dcp} overviewData={_data} />
+                        </XModal>
 
                         <XModal ref={(ref) => this.addressConfigModal = ref}
                             title="Address Settings"
-                            body={<AddressConfigPanel ref={(acp) => { this.addressConfigPanelBody = acp; }} addressData={_data} />}
-                            okFunc={this.actionAddressConfigOkButtonClick} />
+                            okFunc={this.actionAddressConfigOkButtonClick} >
+                            <AddressConfigPanel ref={(ref) => this.addressConfigPanelBody = ref} addressData={this.overviewData} />
+                        </XModal>
                     </div>
                 );
             } else {

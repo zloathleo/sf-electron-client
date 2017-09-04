@@ -24,7 +24,7 @@ class AlarmPage extends React.Component {
 
     //初始化数据
     requestInitDatas() {
-        HttpRequest.axios.get('/alarm').then(this.onRequestInitDatasLoaded);
+        HttpRequest.axios.get('/alarms?timestamp=' + parseInt(new Date().getTime() / 1000 - 60 * 10)).then(this.onRequestInitDatasLoaded);
     }
 
     onRequestInitDatasLoaded(response) {

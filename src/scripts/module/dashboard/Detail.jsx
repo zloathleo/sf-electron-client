@@ -77,8 +77,9 @@ class DetailCard extends React.Component {
                     <div className="panel-body">
 
                         <XModal ref={(ref) => this.userSettingsModal = ref} title="User Settings"
-                            body={<DetailUserSettingsPanel ref={(ref) => this.detailUserSettingsPanel = ref} chn={chn} />}
-                            okFunc={this.actionConfigOKButtonClick} />
+                            okFunc={this.actionConfigOKButtonClick} >
+                            <DetailUserSettingsPanel ref={(ref) => this.detailUserSettingsPanel = ref} chn={chn} />
+                        </XModal>
 
                         <div className="row">
                             <div className="col-md-6">

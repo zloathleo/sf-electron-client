@@ -36,6 +36,8 @@ const Global = {
 
         RefreshThreadInterval: 1000 * 1,
         RefreshThreadIntervalFault: 1000 * 5,
+
+        EventVar_Modal_ClickItemName:undefined,
     }
 
 }
