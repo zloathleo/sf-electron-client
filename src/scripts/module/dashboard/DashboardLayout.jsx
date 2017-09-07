@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Global from '../common/Global.jsx'
-import CommonTools from '../common/CommonTools.jsx'
+import Global from '../common/Global.jsx';
+import CommonTools from '../common/CommonTools.jsx';
 import HttpRequest from '../common/HttpRequest.jsx';
-import EventProxy from '../common/EventProxy.jsx'
+import EventProxy from '../common/EventProxy.jsx';
 
-import ButtonMenu from '../commonui/ButtonMenu.jsx'
+import ButtonMenu from '../commonui/ButtonMenu.jsx';
 import XModal from '../commonui/XModal.jsx';
 
 import OverviewContextMenu from './DashboardContextMenu.jsx';

@@ -9,27 +9,47 @@ class AlarmPage extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = { uiUpdate: 0 };
+
         this.alarmData = undefined;
 
-        //init
-        this.requestInitDatas = this.requestInitDatas.bind(this);
+        this.refreshDataInterval = undefined;
+        //init 
+        this.refreshData = this.refreshData.bind(this);
         this.onRequestInitDatasLoaded = this.onRequestInitDatasLoaded.bind(this);
         //ui
         this.buttonSearch = undefined;
     }
 
     componentDidMount() {
-        this.requestInitDatas();
+        this.refreshData();
     }
 
-    //初始化数据
-    requestInitDatas() {
-        HttpRequest.axios.get('/alarms?timestamp=' + parseInt(new Date().getTime() / 1000 - 60 * 10)).then(this.onRequestInitDatasLoaded);
+    componentWillUnmount() {
+        clearTimeout(this.refreshDataInterval);
+    }
+
+    //刷新实时
+    refreshData() {
+        HttpRequest.axios.get('/alarms?timestamp=' + parseInt(new Date().getTime() / 1000 - 60 * 60 * 24)).then(this.onRequestInitDatasLoaded);
     }
 
     onRequestInitDatasLoaded(response) {
         this.alarmData = response.data;
-        console.log(this.alarmData);
+        this.setState({ uiUpdate: (this.state.uiUpdate++) });
+
+        this.refreshDataInterval = setTimeout(this.refreshData, 1000 * 5);
+    }
+
+    buildRows(row, i) {
+        return (
+            <tr role="row" key={i}>
+                <td>{row.timestamp}</td>
+                <td>{row.amp_id}</td>
+                <td>{row.name}</td>
+                <td>{row.code}</td>
+            </tr>
+        )
     }
 
     render() {
@@ -38,9 +58,9 @@ class AlarmPage extends React.Component {
             <div className="panel panel-dark">
                 <div className="panel-heading">
 
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-success">AMP ID</button>
-                        <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {/* <div className="btn-group">
+                        <button type="button" className="btn btn-primary">AMP ID</button>
+                        <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span className="caret"></span>
                             <span className="sr-only">Toggle Dropdown</span>
                         </button>
@@ -50,9 +70,9 @@ class AlarmPage extends React.Component {
                             <li><a href="#">3</a></li>
                             <li><a href="#">4</a></li>
                         </ul>
-                    </div>
+                    </div> */}
 
-                    <button type="button" ref={(ref) => this.buttonSearch = ref} className="btn btn-primary panel-head-button">Search</button>
+                    {/* <button type="button" ref={(ref) => this.buttonSearch = ref} className="btn btn-success panel-head-button">Search</button> */}
 
                     <div className="panel-head-right">
                         <button type="button" className="btn btn-primary panel-head-button">Save To File</button>
@@ -70,38 +90,12 @@ class AlarmPage extends React.Component {
                                     <tr role="row">
                                         <th style={{ width: '100px' }} >Timestamp</th>
                                         <th style={{ width: '100px' }}>AMP ID</th>
-                                        <th style={{ width: '100px' }} >Scanner ID</th>
-                                        <th style={{ width: '100px' }} >DC</th>
-                                        <th style={{ width: '100px' }}>AC</th>
-                                        <th style={{ width: '100px' }}>FREQ</th>
-
-                                        <th style={{ width: '100px' }}>Type</th>
-                                        <th style={{ width: '100px' }}>Satus</th>
-                                        <th style={{ width: '100px' }}>TEMP</th>
-                                        <th style={{ width: '100px' }}>Fault</th>
-                                        <th style={{ width: '100px' }}>AC Gain</th>
-
-                                        <th style={{ width: '100px' }}>AC OnTH_H</th>
+                                        <th style={{ width: '100px' }} >AMP Name</th>
+                                        <th style={{ width: '100px' }} >Code</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr role="row" >
-                                        <td>17-07-01 10:00:00</td>
-                                        <td>1</td>
-                                        <td>CH1</td>
-                                        <td>411</td>
-                                        <td>1999</td>
-                                        <td>99</td>
-
-                                        <td>IR</td>
-                                        <td>ON</td>
-                                        <td>35</td>
-                                        <td>0</td>
-                                        <td>1</td>
-                                        <td>99</td>
-                                        <td>1999</td>
-                                    </tr>
-
+                                    {_data == undefined ? null : _data.rows.map(this.buildRows)}
                                 </tbody>
                             </table>
                         </div>

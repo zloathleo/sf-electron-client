@@ -10,7 +10,7 @@ import {
     ModalFooter
 } from 'react-modal-bootstrap';
 
-class XModal extends React.Component {
+class XModalNoTitle extends React.Component {
 
     constructor(props) {
         super(props);
@@ -43,15 +43,14 @@ class XModal extends React.Component {
 
     render() {
         if (this.state.isOpen) {
-            let title = this.props.title ? this.props.title : 'Title';
             let okText = this.props.okText ? this.props.okText : 'OK';
             let _size = this.props.size ? this.props.size : 'modal-lg';
             return (
-                <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal} size={_size}>
-                    <ModalHeader>
-                        <ModalClose onClick={this.hideModal} />
-                        <ModalTitle>{title}</ModalTitle>
-                    </ModalHeader>
+                <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal} size={_size} dialogStyles={{
+                    base: {
+                        minWidth: '980px'
+                    }
+                }}>
                     <ModalBody>
                         {this.props.children}
                     </ModalBody>
@@ -72,11 +71,10 @@ class XModal extends React.Component {
     }
 }
 
-XModal.PropsType = {
-    title: PropTypes.string,
+XModalNoTitle.PropsType = {
     size: PropTypes.string,
     okText: PropTypes.string,
     okFunc: PropTypes.func
 }
 
-export default XModal;
+export default XModalNoTitle;

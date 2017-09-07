@@ -36,9 +36,10 @@ const HttpRequest = {
             localStorage.setItem("server.url", url);
             this.setCommonResponse();
 
-            Global.Status.UserName = localStorage.getItem(Global.Const.LocalStorageKey_UserName);
-            Global.Status.UserPassword = localStorage.getItem('user.password');
-            Global.Status.UserLoginToken = localStorage.getItem('user.token');
+            //
+            // Global.Status.UserName = localStorage.getItem(Global.Const.LocalStorageKey_UserName);
+            // Global.Status.UserPassword = localStorage.getItem('user.password');
+            // Global.Status.UserLoginToken = localStorage.getItem('user.token');
 
             if (okFunc) {
                 okFunc();
@@ -97,8 +98,8 @@ const HttpRequest = {
     afterLogin: function (name, password, token) {
         localStorage.setItem(Global.Const.LocalStorageKey_UserName, name);
         //
-        localStorage.setItem('user.password', password);
-        localStorage.setItem('user.token', token);
+        // localStorage.setItem('user.password', password);
+        // localStorage.setItem('user.token', token);
 
         Global.Status.UserName = name;
         Global.Status.UserPassword = password;
@@ -116,8 +117,8 @@ const HttpRequest = {
     afterLogout: function () {
         localStorage.removeItem(Global.Const.LocalStorageKey_UserName);
         //
-        localStorage.removeItem('user.password');
-        localStorage.removeItem('user.token');
+        // localStorage.removeItem('user.password');
+        // localStorage.removeItem('user.token');
 
         Global.Status.UserName = undefined;
         Global.Status.UserPassword = undefined;

@@ -16,18 +16,32 @@ class DetailCard extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = { unit: 0 };//0==C
+
         this.detailUserSettingsPanel = undefined;
         //action
         this.actionUserSettingClick = this.actionUserSettingClick.bind(this);
         this.onDetailUserSettingsLoaded = this.onDetailUserSettingsLoaded.bind(this);
         this.renderUserSettingButton = this.renderUserSettingButton.bind(this);
+
+        this.actionConfigOKButtonClick = this.actionConfigOKButtonClick.bind(this);
+    }
+
+    componentDidMount() {
+        EventProxy.on(Global.Const.Event_TemperatureUnitChange, (_unit) => {
+            if (_unit == 'C') {
+                this.setState({ unit: 0 });
+            } else {
+                this.setState({ unit: 1 });
+            }
+        });
     }
 
     //usersettings
     actionUserSettingClick(_param) {
         let dname = this.props.dname;
         EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Doing);
-        HttpRequest.axios.get('/detail/' + this.props.dname + '/usersettings/m').then(this.onDetailUserSettingsLoaded);
+        HttpRequest.axios.get('/detail/' + this.props.dname + '/usersettings/d').then(this.onDetailUserSettingsLoaded);
     }
     onDetailUserSettingsLoaded(response) {
         EventProxy.trigger(Global.Const.Event_DataLoading, Global.Const.Key_DataLoading_Finish);
@@ -35,7 +49,7 @@ class DetailCard extends React.Component {
         this.detailUserSettingsPanel.setState({ data: response.data });
     }
     actionConfigOKButtonClick() {
-        console.log('ok');
+        let _inputs = this.detailUserSettingsPanel.parseInput();
     }
     //usersettings
 
@@ -63,6 +77,9 @@ class DetailCard extends React.Component {
         let addr = this.props.addr;
         let ch = this.props.ch;
         let chn = this.props.chn;
+
+        let _temp = this.state.unit == 0 ? ch.temp : ch.temp * 1.8 + 32;
+        console.log('_temp:' + _temp);
         return (
             <div className="col-xs-6 detail-card">
                 <div className="panel panel-dark detail-panel">
@@ -98,7 +115,7 @@ class DetailCard extends React.Component {
                                     <li><span className="field-name">TYPE</span><span className="pull-right field-value-dsdigi-font">{ch.type != undefined ? ch.type : '--'}</span></li>
                                     <li><span className="field-name">STATUS</span><span className="pull-right field-value-dsdigi-font">{ch.status != undefined ? ch.status : '--'}</span></li>
                                     <li><span className="field-name">FAULT</span><span className="pull-right field-value-dsdigi-font">{ch.fault != undefined ? ch.fault : '--'}</span></li>
-                                    <li><span className="field-name">TEMP</span><span className="pull-right field-value-dsdigi-font">{ch.temp != undefined ? ch.temp : '--'}</span></li>
+                                    <li><span className="field-name">TEMP</span><span className="pull-right field-value-dsdigi-font">{ch.temp != undefined ? (this.state.unit == 0 ? ch.temp : ch.temp * 1.8 + 32) : '--'}</span></li>
                                     <li><span className="field-name">FQ</span><span className="pull-right field-value-dsdigi-font">{ch.fq != undefined ? ch.fq + '%' : '--'}</span></li>
                                     <li><span className="pull-right">  </span></li>
                                 </ul>

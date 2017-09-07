@@ -296,3 +296,14 @@
     text-align: center;
 }
 
+/**system settings **/
+.system-settings-value {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.system-settings-chan-tab{
+    border: 1px solid rgba(120,130,140,0.4);
+    padding: 10px;
+    margin: 0px;
+}
