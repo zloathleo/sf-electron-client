@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager ./ sfclient --win --out sfclient --arch=x64 --version 1.6.2 --overwrite --ignore=node_modules"
   },
   "devDependencies": {
     "axios": "^0.16.2",
@@ -19,9 +20,10 @@
     "browser-request": "^0.3.3",
     "copy-webpack-plugin": "^4.0.1",
     "electron": "~1.6.2",
+    "electron-packager": "^9.0.1",
     "node-forge": "^0.7.1",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1", 
+    "react": "^15.6.1",
     "react-bootstrap-switch": "^15.5.0-a",
     "react-contextmenu": "^2.6.3",
     "react-dom": "^15.6.1",
@@ -34,6 +36,5 @@
     "webpack-dev-server": "^2.4.1"
   },
   "author": "leo zhong",
-  "dependencies": { 
-  }
+  "dependencies": {}
 }
